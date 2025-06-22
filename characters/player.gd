@@ -1,16 +1,55 @@
+class_name Player
 extends CharacterBody2D
 
+@onready var animation_player := $AnimationPlayer
+@onready var character_sprite := $PlayerSprites
 
-const SPEED = 300.0
+const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
+
+enum PlayerState {
+	IDLE,
+	WALK
+}
+
+var AnimationDictionary := {
+	PlayerState.IDLE: 'idle',
+	PlayerState.WALK: 'walk'
+}
+
+var current_state : PlayerState
 
 
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
 	handle_movement_input()
+	
+	handle_animation(current_state)
 
 	# Process movement and execute it in game
 	move_and_slide()
+	
+
+# STATE
+
+func set_state(new_state: PlayerState) -> void:
+	current_state = new_state
+	
+func is_walking() -> void:
+	current_state = PlayerState.WALK
+	
+func is_idle() -> void:
+	current_state = PlayerState.IDLE
+	
+func flip_sprites() -> void:
+	# moving forward
+	if velocity.x > 0:
+		character_sprite.flip_h = true
+		#damage_emitter.scale.x = 1
+	# moving back
+	elif velocity.x < 0:
+		character_sprite.flip_h = false
+		#damage_emitter.scale.x = -1
 
 # PHYSICS
 
@@ -29,6 +68,24 @@ func handle_movement_input() -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
+		is_walking()
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	flip_sprites()
+	
+	if velocity.x == 0:
+		is_idle()
+
+# Should I have an animation module?
+
+func handle_animation(state: PlayerState) -> void:
+	var animation_to_play = AnimationDictionary[state]
+		
+	if animation_player.has_animation(animation_to_play):
+		animation_player.play(animation_to_play)
+	else:
+		print('Unexpected animation key - ', animation_to_play)
+		return
+	
