@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cleasu8qoohko"]
+
+[ext_resource type="Script" uid="uid://dftsxtkni3gv8" path="res://characters/player.gd" id="1_dnjla"]
+[ext_resource type="Script" uid="uid://brny1n4ohpgfh" path="res://characters/hitbox.gd" id="2_3eadt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnjla"]
+radius = 21.095
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_dnjla")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_6p3mc")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_3eadt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_dnjla")
+debug_color = Color(1.15514e-06, 0.637711, 0.388473, 0.42)

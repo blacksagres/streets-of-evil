@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddl14tax45g6q"]
+
+[ext_resource type="Script" uid="uid://ce74mx81j8g0s" path="res://components/healthbar.gd" id="1_wl2h2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fp6s"]
+bg_color = Color(0.124272, 0.701142, 0.531885, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Healthbar" type="ProgressBar"]
+editor_description = "A simple healthbar for the enemy"
+offset_right = 208.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_5fp6s")
+show_percentage = false
+script = ExtResource("1_wl2h2")

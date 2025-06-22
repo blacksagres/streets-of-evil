@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://csw4bw3qe8a6s"]
+
+[ext_resource type="Script" uid="uid://bkb56i63w1jkw" path="res://characters/enemy.gd" id="1_wa0eo"]
+[ext_resource type="Script" uid="uid://dlu7yrj8cd3d7" path="res://characters/hurtbox.gd" id="2_nhupr"]
+[ext_resource type="PackedScene" uid="uid://ddl14tax45g6q" path="res://components/healthbar.tscn" id="3_1ohc2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbwbs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
+radius = 21.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_wa0eo")
+
+[node name="EnemyCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dbwbs")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+monitorable = false
+script = ExtResource("2_nhupr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_wa0eo")
+debug_color = Color(0.9314, 0.136005, 0.557288, 0.42)
+
+[node name="Healthbar" parent="." instance=ExtResource("3_1ohc2")]
+offset_left = -59.0
+offset_top = -54.0
+offset_right = 59.0
+offset_bottom = -27.0
