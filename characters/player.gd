@@ -4,6 +4,10 @@ extends CharacterBody2D
 @onready var animation_player := $AnimationPlayer
 @onready var character_sprite := $PlayerSprites
 
+# External dependencies
+
+@export var BULLET : PackedScene
+
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
@@ -23,6 +27,7 @@ var current_state : PlayerState
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
 	handle_movement_input()
+	handle_command_input()
 	
 	handle_animation(current_state)
 
@@ -30,6 +35,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 
+# COMMAND INPUTS
+# Reference: https://github.com/Unchained112/SimpleTopDownShooterTemplate2D/tree/main
+func handle_command_input() -> void:
+	if Input.is_action_just_pressed("shoot"):
+		var new_bullet = BULLET.instantiate()
+		get_tree().root.add_child(new_bullet)
+		
+		# this makes a new origin point from the bullet to shoot from
+		# ideally we want a Marker2D as a spawn point but the character itself
+		# will do.
+		new_bullet.transform = self.transform
+		
 # STATE
 
 func set_state(new_state: PlayerState) -> void:
