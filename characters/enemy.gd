@@ -19,11 +19,20 @@ func _process(delta: float) -> void:
 	
 # Signal responses
 
-func on_received_damage(hit_box: Hitbox) -> void:
-	print('"Oh no!" - Enemy says... ', hit_box.damage, ' damage!')
-	#healthbar.current_health_changed_signal.
-	# better to have function that deals damage?
-	healthbar.update_current_health(-hit_box.damage)
+func on_received_damage(hit_box: Area2D) -> void:
+		
+	if hit_box.has_method('get_hit_info'):
+		var hit_info = hit_box.get_hit_info()
+		#healthbar.current_health_changed_signal.
+		# better to have function that deals damage?
+		healthbar.update_current_health(-hit_info.damage)
+		print('"Oh no!" - Enemy says... ', hit_info.damage, ' damage!')
+		
+	
+	if hit_box.has_method('destroy_projectile'):
+		hit_box.destroy_projectile()
+	
+	
 
 # make signal trigger animation?
 func on_current_health_changed(amount: float) -> void:

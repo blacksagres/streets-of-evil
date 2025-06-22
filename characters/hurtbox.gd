@@ -12,11 +12,5 @@ func hit_taken(hit_box: Area2D) -> void:
 		print('Unexpected collision in hurtbox, hitbox is null.' )
 		return;
 	
-	if hit_box.has_method('get_hit_info'):
-		var hit_info = hit_box.get_hit_info()
-		print('Hurtbox was dealt ', hit_info.damage, ' damage!')
-	
-	print('new damage type!')
-	
 	hit_taken_signal.emit(hit_box)
 	
