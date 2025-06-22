@@ -14,6 +14,20 @@ config/name="streets-of-evil"
 run/main_scene="uid://cfm1g0c2lt806"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[display]
+
+window/size/viewport_width=352
+window/size/viewport_height=192
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="viewport"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "purple"
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
