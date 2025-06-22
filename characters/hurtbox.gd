@@ -7,10 +7,16 @@ signal hit_taken_signal(hit_box: Hitbox)
 func _ready() -> void:
 	connect("area_entered", hit_taken)
 
-func hit_taken(hit_box: Hitbox) -> void:
+func hit_taken(hit_box: Area2D) -> void:
 	if hit_box == null:
 		print('Unexpected collision in hurtbox, hitbox is null.' )
 		return;
-	print('Hurtbox was dealt ', hit_box.damage, ' damage!')
+	
+	if hit_box.has_method('get_hit_info'):
+		var hit_info = hit_box.get_hit_info()
+		print('Hurtbox was dealt ', hit_info.damage, ' damage!')
+	
+	print('new damage type!')
+	
 	hit_taken_signal.emit(hit_box)
 	
