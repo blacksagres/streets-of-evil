@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 
 func handle_death(delta: float) -> void:
 	if healthbar.get_current_health() <= 0:
+		# decreases the alpha, creating a phase out effect
 		modulate.a -= delta / 2.0
 	
 # Signal responses

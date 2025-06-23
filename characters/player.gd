@@ -47,6 +47,12 @@ func handle_command_input() -> void:
 		# will do.
 		new_bullet.transform = self.transform
 		
+		# have to have this state in a function somewhere
+		if character_sprite.flip_h:
+			new_bullet.scale.x = 1
+		else:
+			new_bullet.scale.x = -1
+		
 # STATE
 
 func set_state(new_state: PlayerState) -> void:
