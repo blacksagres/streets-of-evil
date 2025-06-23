@@ -16,3 +16,6 @@ func update_current_health(amount: float) -> void:
 		self.value += amount
 		
 	current_health_changed_signal.emit(amount)
+
+func get_current_health() -> float:
+	return self.value

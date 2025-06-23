@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var hurtbox := %Hurtbox
 @onready var healthbar := $Healthbar
-
+@onready var death_cry_audio := $DeathCry
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hurtbox.hit_taken_signal.connect(on_received_damage)
@@ -15,7 +15,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	handle_death(delta)
+	
+# Time related effects
+
+func handle_death(delta: float) -> void:
+	if healthbar.get_current_health() <= 0:
+		modulate.a -= delta / 2.0
 	
 # Signal responses
 
@@ -31,6 +37,10 @@ func on_received_damage(hit_box: Area2D) -> void:
 	
 	if hit_box.has_method('destroy_projectile'):
 		hit_box.destroy_projectile()
+		
+	if healthbar.get_current_health() <= 0:
+		death_cry_audio.play()
+		death_cry_audio.finished.connect(queue_free)
 	
 	
 

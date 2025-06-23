@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://csw4bw3qe8a6s"]
+[gd_scene load_steps=8 format=3 uid="uid://csw4bw3qe8a6s"]
 
 [ext_resource type="Script" uid="uid://bkb56i63w1jkw" path="res://characters/enemy.gd" id="1_wa0eo"]
 [ext_resource type="Texture2D" uid="uid://cif13e87256kg" path="res://assets/enemies/zombie-placeholder.png" id="2_ggbst"]
 [ext_resource type="Script" uid="uid://dlu7yrj8cd3d7" path="res://characters/hurtbox.gd" id="2_nhupr"]
 [ext_resource type="PackedScene" uid="uid://ddl14tax45g6q" path="res://components/healthbar.tscn" id="3_1ohc2"]
+[ext_resource type="AudioStream" uid="uid://fwndvhgtnimb" path="res://assets/audio/enemy-death.wav" id="5_toq4n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbwbs"]
 
@@ -39,3 +40,6 @@ offset_left = -32.0
 offset_top = -72.0
 offset_right = 32.0
 offset_bottom = -56.0
+
+[node name="DeathCry" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_toq4n")
