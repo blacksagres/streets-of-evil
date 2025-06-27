@@ -84,6 +84,7 @@ position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_6p3mc")
 
 [node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_mask = 0
 monitoring = false
 script = ExtResource("2_3eadt")
@@ -105,5 +106,6 @@ width = 2.0
 default_color = Color(1, 0.04, 0.04, 1)
 
 [node name="AttackSpeedTimer" type="Timer" parent="."]
+wait_time = 0.291
 autostart = true
 script = ExtResource("4_x0jl3")

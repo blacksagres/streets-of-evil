@@ -1,10 +1,15 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var hurtbox := %Hurtbox
 @onready var healthbar := $Healthbar
 @onready var death_cry_audio := $DeathCry
+
+# This needs to be retrieved as a node to get a global position from
+@onready var player : Node
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player = get_node("/root/World/ActorsContainer/Player")
 	hurtbox.hit_taken_signal.connect(on_received_damage)
 	healthbar.current_health_changed_signal.connect(on_current_health_changed)
 	
@@ -14,8 +19,16 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	handle_death(delta)
+	follow_player()
+	
+func follow_player() -> void:
+	
+	print('player - ', player.global_position)
+	var direction = global_position.direction_to(player.global_position)
+	velocity = direction * 100
+	move_and_slide()
 	
 # Time related effects
 
