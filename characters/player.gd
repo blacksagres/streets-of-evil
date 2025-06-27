@@ -4,7 +4,9 @@ extends CharacterBody2D
 @onready var animation_player := $AnimationPlayer
 @onready var character_sprite := $PlayerSprites
 
-# External dependencies
+@onready var laser_sight := $LaserSight
+
+# External dependencies, weapons, equipment, etc
 
 @export var BULLET : PackedScene
 
@@ -27,13 +29,17 @@ var current_state : PlayerState
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
 	handle_movement_input()
+	handle_laser_sight()
 	handle_command_input()
 	
 	handle_animation(current_state)
 
 	# Process movement and execute it in game
 	move_and_slide()
-	
+
+func handle_laser_sight() -> void:
+	# Rotates the laser together with the character
+	laser_sight.points = [Vector2.ZERO, Vector2.RIGHT * 1000]
 
 # COMMAND INPUTS
 # Reference: https://github.com/Unchained112/SimpleTopDownShooterTemplate2D/tree/main

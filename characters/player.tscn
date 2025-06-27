@@ -97,3 +97,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_evndh")
 }
 autoplay = "idle"
+
+[node name="LaserSight" type="Line2D" parent="."]
+points = PackedVector2Array(7, -17)
+width = 2.0
+default_color = Color(1, 0.04, 0.04, 1)
