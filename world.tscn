@@ -1,11 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene load_steps=8 format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dl5pmj3xjvpde" path="res://assets/pixel-art-street-test.jpg" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://boabdmx1vydgf" path="res://components/weapons/Bullet.tscn" id="3_aqk2v"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwbse"]
+size = Vector2(192, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
-size = Vector2(192, 13.25)
+resource_local_to_scene = true
+size = Vector2(192, 8.00035)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
+size = Vector2(177, 6.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
+size = Vector2(176, 8)
 
 [node name="World" type="Node2D"]
 
@@ -18,17 +28,30 @@ texture = ExtResource("1_tlwt5")
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+[node name="VerticalWalls" type="StaticBody2D" parent="Walls"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(8, 96)
+[node name="LeftWall" type="CollisionShape2D" parent="Walls/VerticalWalls"]
+position = Vector2(4, 96)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_dwbse")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls/VerticalWalls"]
+position = Vector2(348, 96)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_aqk2v")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D"]
-position = Vector2(344, 96)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_aqk2v")
+[node name="UpWall" type="CollisionShape2D" parent="Walls/VerticalWalls"]
+position = Vector2(175.996, 3.25)
+rotation = 0.00109187
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="DownWall" type="CollisionShape2D" parent="Walls/VerticalWalls"]
+position = Vector2(176, 188)
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_036b0")
+
+[node name="HorizontalWalls" type="StaticBody2D" parent="Walls"]
 
 [node name="ActorsContainer" type="Node2D" parent="."]
 
