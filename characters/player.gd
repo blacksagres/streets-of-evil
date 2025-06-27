@@ -39,6 +39,22 @@ func _physics_process(delta: float) -> void:
 # Reference: https://github.com/Unchained112/SimpleTopDownShooterTemplate2D/tree/main
 func handle_command_input() -> void:
 	if Input.is_action_just_pressed("shoot"):
+		
+		## SHOTGUN
+		
+		const MAXIMUM_SPREAD = deg_to_rad(5)
+		const BULLET_COUNT = 7
+		
+		for i in range(BULLET_COUNT):
+			var bullet = BULLET.instantiate()
+
+			var angle_offset = lerp(-MAXIMUM_SPREAD, MAXIMUM_SPREAD, float(i)/BULLET_COUNT)
+			bullet.rotation = angle_offset
+			bullet.position = position
+			get_tree().root.add_child(bullet)
+			#add_sibling(bullet)
+		
+		return 
 		var new_bullet = BULLET.instantiate()
 		get_tree().root.add_child(new_bullet)
 		

@@ -40,6 +40,8 @@ func on_received_damage(hit_box: Area2D) -> void:
 		hit_box.destroy_projectile()
 		
 	if healthbar.get_current_health() <= 0:
+		queue_free()
+		return
 		death_cry_audio.play()
 		death_cry_audio.finished.connect(queue_free)
 	
