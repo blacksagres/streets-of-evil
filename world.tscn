@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene load_steps=5 format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dl5pmj3xjvpde" path="res://assets/pixel-art-street-test.jpg" id="1_tlwt5"]
-[ext_resource type="PackedScene" uid="uid://csw4bw3qe8a6s" path="res://characters/enemy.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://boabdmx1vydgf" path="res://components/weapons/Bullet.tscn" id="3_aqk2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
@@ -34,8 +33,5 @@ shape = SubResource("RectangleShape2D_aqk2v")
 [node name="ActorsContainer" type="Node2D" parent="."]
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("1_f3sb7")]
-position = Vector2(104, 184)
+position = Vector2(184, 128)
 BULLET = ExtResource("3_aqk2v")
-
-[node name="Enemy" parent="ActorsContainer" instance=ExtResource("2_fj7yv")]
-position = Vector2(288, 184)
