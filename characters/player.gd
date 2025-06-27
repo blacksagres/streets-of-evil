@@ -105,12 +105,8 @@ func handle_gravity(delta: float) -> void:
 func handle_movement_input() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		is_walking()
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = direction * SPEED
 		
 	flip_sprites()
 	
