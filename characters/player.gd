@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 @onready var laser_sight := $LaserSight
 
+@onready var attack_speed := $AttackSpeedTimer
+
 # External dependencies, weapons, equipment, etc
 
 @export var BULLET : PackedScene
@@ -25,6 +27,8 @@ var AnimationDictionary := {
 
 var current_state : PlayerState
 
+func _ready() -> void:
+	attack_speed.timeout.connect(attack)
 
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
@@ -33,9 +37,26 @@ func _physics_process(delta: float) -> void:
 	handle_command_input()
 	
 	handle_animation(current_state)
+	
+	
 
 	# Process movement and execute it in game
 	move_and_slide()
+
+func attack() -> void:
+	var new_bullet = BULLET.instantiate()
+	get_tree().root.add_child(new_bullet)
+	
+	# this makes a new origin point from the bullet to shoot from
+	# ideally we want a Marker2D as a spawn point but the character itself
+	# will do.
+	new_bullet.transform = self.transform
+	
+	# have to have this state in a function somewhere
+	if character_sprite.flip_h:
+		new_bullet.scale.x = 1
+	else:
+		new_bullet.scale.x = -1
 
 func handle_laser_sight() -> void:
 	# Rotates the laser together with the character
@@ -48,19 +69,19 @@ func handle_command_input() -> void:
 		
 		## SHOTGUN
 		
-		const MAXIMUM_SPREAD = deg_to_rad(5)
-		const BULLET_COUNT = 7
-		
-		for i in range(BULLET_COUNT):
-			var bullet = BULLET.instantiate()
-
-			var angle_offset = lerp(-MAXIMUM_SPREAD, MAXIMUM_SPREAD, float(i)/BULLET_COUNT)
-			bullet.rotation = angle_offset
-			bullet.position = position
-			get_tree().root.add_child(bullet)
-			#add_sibling(bullet)
-		
-		return 
+		#const MAXIMUM_SPREAD = deg_to_rad(5)
+		#const BULLET_COUNT = 7
+		#
+		#for i in range(BULLET_COUNT):
+			#var bullet = BULLET.instantiate()
+#
+			#var angle_offset = lerp(-MAXIMUM_SPREAD, MAXIMUM_SPREAD, float(i)/BULLET_COUNT)
+			#bullet.rotation = angle_offset
+			#bullet.position = position
+			#get_tree().root.add_child(bullet)
+			##add_sibling(bullet)
+		#
+		#return 
 		var new_bullet = BULLET.instantiate()
 		get_tree().root.add_child(new_bullet)
 		
