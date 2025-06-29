@@ -16,6 +16,33 @@ point_count = 5
 script = ExtResource("1_aqk2v")
 zombie_scene = ExtResource("2_036b0")
 
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.3, 0.3, 0.3, 1)
+z_index = -1
+position = Vector2(992.239, 549.695)
+scale = Vector2(1.8366, 1.78189)
+texture = ExtResource("1_tlwt5")
+
+[node name="Menus" type="Node2D" parent="."]
+
+[node name="LevelUpMenu" type="Node2D" parent="Menus"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Menus/LevelUpMenu"]
+offset_left = 816.0
+offset_top = 256.0
+offset_right = 1376.0
+offset_bottom = 328.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/LevelUpMenu"]
+offset_left = 832.0
+offset_top = 264.0
+offset_right = 1368.0
+offset_bottom = 320.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "LEVEL UP!
+- Fire rate increased"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 800.0
 offset_top = 440.0
@@ -23,13 +50,6 @@ offset_right = 1224.0
 offset_bottom = 496.0
 text = "The final stand of the Raccoon City brace officers... 
 Can you make it?"
-
-[node name="Pixel-art-street-test" type="Sprite2D" parent="."]
-modulate = Color(0.3, 0.3, 0.3, 1)
-z_index = -1
-position = Vector2(992.239, 549.695)
-scale = Vector2(1.8366, 1.78189)
-texture = ExtResource("1_tlwt5")
 
 [node name="ActorsContainer" type="Node2D" parent="."]
 
