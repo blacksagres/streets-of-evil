@@ -7,7 +7,7 @@ extends CharacterBody2D
 # This needs to be retrieved as a node to get a global position from
 @onready var player : Node
 
-const SPEED := 20
+const SPEED := 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
