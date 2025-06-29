@@ -16,20 +16,29 @@ point_count = 5
 script = ExtResource("1_aqk2v")
 zombie_scene = ExtResource("2_036b0")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 800.0
+offset_top = 440.0
+offset_right = 1224.0
+offset_bottom = 496.0
+text = "The final stand of the Raccoon City brace officers... 
+Can you make it?"
+
 [node name="Pixel-art-street-test" type="Sprite2D" parent="."]
 modulate = Color(0.3, 0.3, 0.3, 1)
 z_index = -1
-position = Vector2(176.238, 96)
-scale = Vector2(0.325484, 0.315789)
+position = Vector2(992.239, 549.695)
+scale = Vector2(1.8366, 1.78189)
 texture = ExtResource("1_tlwt5")
 
 [node name="ActorsContainer" type="Node2D" parent="."]
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("1_f3sb7")]
-position = Vector2(184, 128)
+position = Vector2(1008, 568)
 BULLET = ExtResource("3_aqk2v")
 
 [node name="SpawnPath" type="Path2D" parent="."]
+scale = Vector2(5.66667, 5.66667)
 curve = SubResource("Curve2D_tlwt5")
 
 [node name="SpawnPathLocation" type="PathFollow2D" parent="SpawnPath"]

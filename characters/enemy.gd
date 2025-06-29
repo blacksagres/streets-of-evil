@@ -7,6 +7,8 @@ extends CharacterBody2D
 # This needs to be retrieved as a node to get a global position from
 @onready var player : Node
 
+const SPEED := 20
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("/root/World/ActorsContainer/Player")
@@ -15,7 +17,7 @@ func _ready() -> void:
 	
 	# setup
 	
-	healthbar.set_initial_health(50)
+	healthbar.set_initial_health(40)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +29,7 @@ func follow_player() -> void:
 	
 	print('player - ', player.global_position)
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 30
+	velocity = direction * SPEED
 	move_and_slide()
 	
 # Time related effects

@@ -12,7 +12,7 @@ extends CharacterBody2D
 
 @export var BULLET : PackedScene
 
-const SPEED = 100.0
+
 const JUMP_VELOCITY = -400.0
 
 enum PlayerState {
@@ -26,6 +26,11 @@ var AnimationDictionary := {
 }
 
 var current_state : PlayerState
+
+var PlayerParameters := {
+	"FIRE_RATE": 0.5,
+	"SPEED": 100
+}
 
 func _ready() -> void:
 	attack_speed.timeout.connect(attack)
@@ -134,7 +139,7 @@ func handle_movement_input() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * SPEED
+	velocity = direction * PlayerParameters.SPEED
 		
 	flip_sprites()
 	
