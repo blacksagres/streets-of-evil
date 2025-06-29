@@ -53,10 +53,10 @@ func attack() -> void:
 	new_bullet.transform = self.transform
 	
 	# have to have this state in a function somewhere
-	if character_sprite.flip_h:
-		new_bullet.scale.x = 1
-	else:
-		new_bullet.scale.x = -1
+	#if character_sprite.flip_h:
+		#new_bullet.scale.x = 1
+	#else:
+		#new_bullet.scale.x = -1
 
 func handle_laser_sight() -> void:
 	# Rotates the laser together with the character

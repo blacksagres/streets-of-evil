@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 	# setup
 	
-	healthbar.set_initial_health(100)
+	healthbar.set_initial_health(50)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +27,7 @@ func follow_player() -> void:
 	
 	print('player - ', player.global_position)
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 100
+	velocity = direction * 30
 	move_and_slide()
 	
 # Time related effects
