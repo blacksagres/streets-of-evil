@@ -43,7 +43,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "LEVEL UP!
 - Fire rate increased"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="SplashText" type="RichTextLabel" parent="."]
 offset_left = 800.0
 offset_top = 440.0
 offset_right = 1224.0

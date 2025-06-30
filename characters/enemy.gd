@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var healthbar := $Healthbar
 @onready var death_cry_audio := $DeathCry
 
+@export var damage_display : PackedScene
+
 # This needs to be retrieved as a node to get a global position from
 @onready var player : Node
 
@@ -27,7 +29,6 @@ func _physics_process(delta: float) -> void:
 	
 func follow_player() -> void:
 	
-	print('player - ', player.global_position)
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED
 	move_and_slide()
@@ -45,6 +46,13 @@ func on_received_damage(hit_box: Area2D) -> void:
 		
 	if hit_box.has_method('get_hit_info'):
 		var hit_info = hit_box.get_hit_info()
+		
+		var new_damage_text = damage_display.instantiate()
+		get_tree().current_scene.add_child(new_damage_text)
+		new_damage_text.global_position = global_position
+		new_damage_text.display_damage(hit_info.damage)
+		
+		
 		#healthbar.current_health_changed_signal.
 		# better to have function that deals damage?
 		healthbar.update_current_health(-hit_info.damage)

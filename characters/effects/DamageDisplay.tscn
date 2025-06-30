@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0amu1v20wlc4"]
+
+[ext_resource type="Script" uid="uid://bl1pdk1gmihmc" path="res://characters/effects/damage_display.gd" id="1_tuy48"]
+
+[sub_resource type="Animation" id="Animation_o1twx"]
+resource_name = "display-damage"
+length = 0.5
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageDisplayText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-40, 0), Vector2(-40, -56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageDisplayText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tuy48"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageDisplayText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-40, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageDisplayText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2mvr2"]
+_data = {
+&"RESET": SubResource("Animation_tuy48"),
+&"display-damage": SubResource("Animation_o1twx")
+}
+
+[node name="DamageDisplay" type="Node2D"]
+script = ExtResource("1_tuy48")
+
+[node name="DamageDisplayText" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -40.0
+offset_right = 36.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.811765, 0, 0, 1)
+text = "0 damage"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2mvr2")
+}
