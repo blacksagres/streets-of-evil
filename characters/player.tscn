@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dftsxtkni3gv8" path="res://characters/player.gd" id="1_dnjla"]
 [ext_resource type="Script" uid="uid://brny1n4ohpgfh" path="res://characters/hitbox.gd" id="2_3eadt"]
 [ext_resource type="Texture2D" uid="uid://7o3rjys2pew7" path="res://assets/scotty-frames.png" id="2_tory2"]
-[ext_resource type="Script" uid="uid://davfvldraeelq" path="res://characters/shooting_timer.gd" id="4_x0jl3"]
+[ext_resource type="Script" uid="uid://davfvldraeelq" path="res://characters/attack_speed_timer.gd" id="4_x0jl3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
 

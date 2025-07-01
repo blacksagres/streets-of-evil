@@ -4,11 +4,13 @@ extends Node2D
 
 @export var zombie_scene : PackedScene
 @onready var zombie_timer := $ZombieTimer
+
+# The message in the center of the screen
 @onready var splash_text := $SplashText
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	zombie_timer.timeout.connect(_on_mob_timer_timeout)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

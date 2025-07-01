@@ -40,10 +40,10 @@ func _physics_process(delta: float) -> void:
 	handle_movement_input()
 	handle_laser_sight()
 	handle_command_input()
-	
+
 	handle_animation(current_state)
-	
-	
+
+
 
 	# Process movement and execute it in game
 	move_and_slide()
@@ -51,12 +51,12 @@ func _physics_process(delta: float) -> void:
 func attack() -> void:
 	var new_bullet = BULLET.instantiate()
 	get_tree().root.add_child(new_bullet)
-	
+
 	# this makes a new origin point from the bullet to shoot from
 	# ideally we want a Marker2D as a spawn point but the character itself
 	# will do.
 	new_bullet.transform = self.transform
-	
+
 	# have to have this state in a function somewhere
 	#if character_sprite.flip_h:
 		#new_bullet.scale.x = 1
@@ -71,9 +71,9 @@ func handle_laser_sight() -> void:
 # Reference: https://github.com/Unchained112/SimpleTopDownShooterTemplate2D/tree/main
 func handle_command_input() -> void:
 	if Input.is_action_just_pressed("shoot"):
-		
+
 		## SHOTGUN
-		
+
 		#const MAXIMUM_SPREAD = deg_to_rad(5)
 		#const BULLET_COUNT = 7
 		#
@@ -86,32 +86,32 @@ func handle_command_input() -> void:
 			#get_tree().root.add_child(bullet)
 			##add_sibling(bullet)
 		#
-		#return 
+		#return
 		var new_bullet = BULLET.instantiate()
 		get_tree().root.add_child(new_bullet)
-		
+
 		# this makes a new origin point from the bullet to shoot from
 		# ideally we want a Marker2D as a spawn point but the character itself
 		# will do.
 		new_bullet.transform = self.transform
-		
+
 		# have to have this state in a function somewhere
 		if character_sprite.flip_h:
 			new_bullet.scale.x = 1
 		else:
 			new_bullet.scale.x = -1
-		
+
 # STATE
 
 func set_state(new_state: PlayerState) -> void:
 	current_state = new_state
-	
+
 func is_walking() -> void:
 	current_state = PlayerState.WALK
-	
+
 func is_idle() -> void:
 	current_state = PlayerState.IDLE
-	
+
 func flip_sprites() -> void:
 	# moving forward
 	if velocity.x > 0:
@@ -140,9 +140,9 @@ func handle_movement_input() -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * PlayerParameters.SPEED
-		
+
 	flip_sprites()
-	
+
 	if velocity.x == 0:
 		is_idle()
 
@@ -150,10 +150,9 @@ func handle_movement_input() -> void:
 
 func handle_animation(state: PlayerState) -> void:
 	var animation_to_play = AnimationDictionary[state]
-		
+
 	if animation_player.has_animation(animation_to_play):
 		animation_player.play(animation_to_play)
 	else:
 		print('Unexpected animation key - ', animation_to_play)
 		return
-	

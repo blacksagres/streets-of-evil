@@ -16,9 +16,9 @@ func _ready() -> void:
 	player = get_node("/root/World/ActorsContainer/Player")
 	hurtbox.hit_taken_signal.connect(on_received_damage)
 	healthbar.current_health_changed_signal.connect(on_current_health_changed)
-	
+
 	# setup
-	
+
 	healthbar.set_initial_health(40)
 
 
@@ -26,49 +26,49 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_death(delta)
 	follow_player()
-	
+
 func follow_player() -> void:
-	
+
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED
 	move_and_slide()
-	
+
 # Time related effects
 
 func handle_death(delta: float) -> void:
 	if healthbar.get_current_health() <= 0:
 		# decreases the alpha, creating a phase out effect
 		modulate.a -= delta / 2.0
-	
+
 # Signal responses
 
 func on_received_damage(hit_box: Area2D) -> void:
-		
+
 	if hit_box.has_method('get_hit_info'):
 		var hit_info = hit_box.get_hit_info()
-		
+
 		var new_damage_text = damage_display.instantiate()
 		get_tree().current_scene.add_child(new_damage_text)
 		new_damage_text.global_position = global_position
 		new_damage_text.display_damage(hit_info.damage)
-		
-		
+
+
 		#healthbar.current_health_changed_signal.
 		# better to have function that deals damage?
 		healthbar.update_current_health(-hit_info.damage)
 		print('"Oh no!" - Enemy says... ', hit_info.damage, ' damage!')
-		
-	
+
+
 	if hit_box.has_method('destroy_projectile'):
 		hit_box.destroy_projectile()
-		
+
 	if healthbar.get_current_health() <= 0:
 		queue_free()
 		return
 		death_cry_audio.play()
 		death_cry_audio.finished.connect(queue_free)
-	
-	
+
+
 
 # make signal trigger animation?
 func on_current_health_changed(amount: float) -> void:
