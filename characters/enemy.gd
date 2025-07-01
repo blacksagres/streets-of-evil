@@ -11,6 +11,8 @@ extends CharacterBody2D
 
 const SPEED := 50
 
+signal on_death_signal(experience_gained: int)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("/root/World/ActorsContainer/Player")
@@ -64,6 +66,7 @@ func on_received_damage(hit_box: Area2D) -> void:
 
 	if healthbar.get_current_health() <= 0:
 		queue_free()
+		on_death_signal.emit(5)
 		return
 		death_cry_audio.play()
 		death_cry_audio.finished.connect(queue_free)

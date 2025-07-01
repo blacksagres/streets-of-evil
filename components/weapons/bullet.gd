@@ -2,7 +2,7 @@ class_name Bullet
 
 extends Area2D
 
-const SPEED := 200
+const SPEED := 500
 const DAMAGE = 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene load_steps=10 format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player.tscn" id="1_f3sb7"]
@@ -11,6 +11,15 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 352, 0, 0, 0, 0, 0, 352, 192, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0)
 }
 point_count = 5
+
+[sub_resource type="Theme" id="Theme_036b0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwbse"]
+bg_color = Color(0, 0.262745, 0.6, 0)
+border_color = Color(0.348161, 0.54898, 0.570556, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
+bg_color = Color(9.62615e-08, 0.691082, 0.654206, 1)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_aqk2v")
@@ -67,3 +76,12 @@ rotation = 1.5708
 
 [node name="ZombieTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="ExperienceGauge" type="ProgressBar" parent="."]
+offset_left = 64.0
+offset_top = 56.0
+offset_right = 1920.0
+offset_bottom = 83.0
+theme = SubResource("Theme_036b0")
+theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")

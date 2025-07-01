@@ -1,17 +1,17 @@
 class_name Player
 extends CharacterBody2D
 
+signal gained_experience_signal(amount: int)
+
 @onready var animation_player := $AnimationPlayer
 @onready var character_sprite := $PlayerSprites
 
 @onready var laser_sight := $LaserSight
-
 @onready var attack_speed := $AttackSpeedTimer
 
 # External dependencies, weapons, equipment, etc
 
 @export var BULLET : PackedScene
-
 
 const JUMP_VELOCITY = -400.0
 
@@ -29,7 +29,9 @@ var current_state : PlayerState
 
 var PlayerParameters := {
 	"FIRE_RATE": 0.5,
-	"SPEED": 100
+	"SPEED": 100,
+	"LEVEL": 1,
+	"CURRENT_EXPERIENCE": 0
 }
 
 func _ready() -> void:
@@ -47,6 +49,16 @@ func _physics_process(delta: float) -> void:
 
 	# Process movement and execute it in game
 	move_and_slide()
+
+func increase_experience(amount: int) -> void:
+	PlayerParameters.CURRENT_EXPERIENCE += 1
+
+	if PlayerParameters.CURRENT_EXPERIENCE == 100:
+		print('LEVEL UP!')
+		PlayerParameters.CURRENT_EXPERIENCE = 0
+		PlayerParameters.LEVEL += 1
+
+	gained_experience_signal.emit(PlayerParameters.CURRENT_EXPERIENCE)
 
 func attack() -> void:
 	var new_bullet = BULLET.instantiate()
