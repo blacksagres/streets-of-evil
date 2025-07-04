@@ -1,5 +1,7 @@
 class_name DamageDisplay
 
+# Instantiated in the enemy script for now
+
 extends Node2D
 
 @onready var animation_player := $AnimationPlayer
@@ -18,5 +20,5 @@ func _process(delta: float) -> void:
 	pass
 
 func display_damage(amount: int) -> void:
-	damage_display_text.text = str(amount) + " damage!"
+	damage_display_text.text = str(amount)
 	animation_player.play("display-damage")
