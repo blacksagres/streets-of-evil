@@ -76,8 +76,8 @@ func attack() -> void:
 		#new_bullet.scale.x = -1
 
 func handle_laser_sight() -> void:
-	# Rotates the laser together with the character
-	laser_sight.points = [Vector2.ZERO, Vector2.RIGHT * 1000]
+	# Rotates the laser together with the character, make it stretch "infinitely"
+	laser_sight.points = [Vector2.ZERO, Vector2.RIGHT * 10000]
 
 # COMMAND INPUTS
 # Reference: https://github.com/Unchained112/SimpleTopDownShooterTemplate2D/tree/main
