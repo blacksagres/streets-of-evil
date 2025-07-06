@@ -14,6 +14,7 @@ extends Node2D
 func _ready() -> void:
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)
 	player.gained_experience_signal.connect(on_player_experience_gained)
+	player.leveled_up_signal.connect(on_player_level_up)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,3 +41,5 @@ func on_mob_timeout_spawn():
 func on_player_experience_gained(amount: int) -> void:
 	experience_gauge.value = amount
 	
+func on_player_level_up() -> void:
+	print("LEVELED UP - WORLD")

@@ -55,7 +55,6 @@ func increase_experience(amount: int) -> void:
 	PlayerParameters.CURRENT_EXPERIENCE += 50
 
 	if PlayerParameters.CURRENT_EXPERIENCE == 100:
-		print('LEVEL UP!')
 		PlayerParameters.CURRENT_EXPERIENCE = 0
 		PlayerParameters.LEVEL += 1
 		leveled_up_signal.emit()
