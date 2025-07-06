@@ -12,19 +12,20 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	zombie_timer.timeout.connect(_on_mob_timer_timeout)
+	zombie_timer.timeout.connect(on_mob_timeout_spawn)
+	player.gained_experience_signal.connect(on_player_experience_gained)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Vanishing text
 	splash_text.modulate.a -= delta / 5
-	experience_gauge.value = player.PlayerParameters.CURRENT_EXPERIENCE
 	pass
 
 
-func _on_mob_timer_timeout():
+func on_mob_timeout_spawn():
 	# Create a new instance of the Mob scene.
 	var mob = zombie_scene.instantiate()
+	
 	mob.connect('on_death_signal', player.increase_experience)
 
 	# Choose a random location on Path2D.
@@ -35,3 +36,7 @@ func _on_mob_timer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
+
+func on_player_experience_gained(amount: int) -> void:
+	experience_gauge.value = amount
+	

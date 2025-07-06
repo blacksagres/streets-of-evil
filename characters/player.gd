@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal gained_experience_signal(amount: int)
+signal leveled_up_signal()
 
 @onready var animation_player := $AnimationPlayer
 @onready var character_sprite := $PlayerSprites
@@ -51,12 +52,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func increase_experience(amount: int) -> void:
-	PlayerParameters.CURRENT_EXPERIENCE += 1
+	PlayerParameters.CURRENT_EXPERIENCE += 50
 
 	if PlayerParameters.CURRENT_EXPERIENCE == 100:
 		print('LEVEL UP!')
 		PlayerParameters.CURRENT_EXPERIENCE = 0
 		PlayerParameters.LEVEL += 1
+		leveled_up_signal.emit()
 
 	gained_experience_signal.emit(PlayerParameters.CURRENT_EXPERIENCE)
 
