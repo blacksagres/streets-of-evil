@@ -32,26 +32,6 @@ position = Vector2(992.239, 549.695)
 scale = Vector2(1.8366, 1.78189)
 texture = ExtResource("1_tlwt5")
 
-[node name="Menus" type="Node2D" parent="."]
-
-[node name="LevelUpMenu" type="Node2D" parent="Menus"]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="Menus/LevelUpMenu"]
-offset_left = 816.0
-offset_top = 256.0
-offset_right = 1376.0
-offset_bottom = 328.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Menus/LevelUpMenu"]
-offset_left = 832.0
-offset_top = 264.0
-offset_right = 1368.0
-offset_bottom = 320.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "LEVEL UP!
-- Fire rate increased"
-
 [node name="SplashText" type="RichTextLabel" parent="."]
 offset_left = 800.0
 offset_top = 440.0
@@ -76,6 +56,45 @@ rotation = 1.5708
 
 [node name="ZombieTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Menus" type="Node2D" parent="."]
+
+[node name="LevelUpMenu" type="Node2D" parent="Menus"]
+
+[node name="ColorRect" type="ColorRect" parent="Menus/LevelUpMenu"]
+offset_left = 832.0
+offset_top = 424.0
+offset_right = 1168.0
+offset_bottom = 648.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menus/LevelUpMenu"]
+offset_left = 888.0
+offset_top = 432.0
+offset_right = 1112.0
+offset_bottom = 488.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "LEVEL UP! CHOOSE A BOON:"
+
+[node name="FireRateBoon" type="Button" parent="Menus/LevelUpMenu"]
+offset_left = 896.0
+offset_top = 480.0
+offset_right = 1088.0
+offset_bottom = 511.0
+text = "INCREASE FIRE RATE"
+
+[node name="DamageBoon" type="Button" parent="Menus/LevelUpMenu"]
+offset_left = 896.0
+offset_top = 520.0
+offset_right = 1088.0
+offset_bottom = 551.0
+text = "INCREASE DAMAGE"
+
+[node name="MovementSpeedBoon" type="Button" parent="Menus/LevelUpMenu"]
+offset_left = 896.0
+offset_top = 560.0
+offset_right = 1088.0
+offset_bottom = 591.0
+text = "INCREASE MOVE SPEED"
 
 [node name="ExperienceGauge" type="ProgressBar" parent="."]
 offset_left = 64.0

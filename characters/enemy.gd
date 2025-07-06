@@ -58,7 +58,7 @@ func on_received_damage(hit_box: Area2D) -> void:
 		#healthbar.current_health_changed_signal.
 		# better to have function that deals damage?
 		healthbar.update_current_health(-hit_info.damage)
-		print('"Oh no!" - Enemy says... ', hit_info.damage, ' damage!')
+		#print('"Oh no!" - Enemy says... ', hit_info.damage, ' damage!')
 
 
 	if hit_box.has_method('destroy_projectile'):

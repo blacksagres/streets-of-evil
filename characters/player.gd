@@ -28,11 +28,20 @@ var AnimationDictionary := {
 
 var current_state : PlayerState
 
+enum PlayerParameterNames {
+	FIRE_RATE,
+	DAMAGE_MODIFIER,
+	SPEED,
+	LEVEL,
+	CURRENT_EXPERIENCE
+}
+
 var PlayerParameters := {
-	"FIRE_RATE": 0.5,
-	"SPEED": 100,
-	"LEVEL": 1,
-	"CURRENT_EXPERIENCE": 0
+	PlayerParameterNames.DAMAGE_MODIFIER: 1,
+	PlayerParameterNames.FIRE_RATE: 0.5,
+	PlayerParameterNames.SPEED: 100,
+	PlayerParameterNames.LEVEL: 1,
+	PlayerParameterNames.CURRENT_EXPERIENCE: 0
 }
 
 func _ready() -> void:
@@ -52,17 +61,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func increase_experience(amount: int) -> void:
-	PlayerParameters.CURRENT_EXPERIENCE += 50
+	PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE] += 10
 
-	if PlayerParameters.CURRENT_EXPERIENCE == 100:
-		PlayerParameters.CURRENT_EXPERIENCE = 0
-		PlayerParameters.LEVEL += 1
+	if PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE] == 100:
+		PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE] = 0
+		PlayerParameters[PlayerParameterNames.LEVEL] += 1
 		leveled_up_signal.emit()
 
-	gained_experience_signal.emit(PlayerParameters.CURRENT_EXPERIENCE)
+	gained_experience_signal.emit(PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE])
 
 func attack() -> void:
 	var new_bullet = BULLET.instantiate()
+	new_bullet.damage_modifier += PlayerParameters[PlayerParameterNames.DAMAGE_MODIFIER]
 	get_tree().root.add_child(new_bullet)
 
 	# this makes a new origin point from the bullet to shoot from
@@ -101,6 +111,7 @@ func handle_command_input() -> void:
 		#
 		#return
 		var new_bullet = BULLET.instantiate()
+		new_bullet.damage_modifier = PlayerParameters[PlayerParameterNames.DAMAGE_MODIFIER]
 		get_tree().root.add_child(new_bullet)
 
 		# this makes a new origin point from the bullet to shoot from
@@ -118,6 +129,14 @@ func handle_command_input() -> void:
 
 func set_state(new_state: PlayerState) -> void:
 	current_state = new_state
+
+#
+#	The idea is to pass a percentage to the parameter, so:
+#	after leveling up you can inrease one of these parameters by 10%, for example
+#
+func increase_parameter(parameter: PlayerParameterNames, amount: float) -> void:
+	PlayerParameters[parameter] += amount
+	print(PlayerParameters)
 
 func is_walking() -> void:
 	current_state = PlayerState.WALK
@@ -152,7 +171,7 @@ func handle_movement_input() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * PlayerParameters.SPEED
+	velocity = direction * PlayerParameters[PlayerParameterNames.SPEED]
 
 	flip_sprites()
 
