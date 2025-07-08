@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @onready var hurtbox := %Hurtbox
 @onready var healthbar := $Healthbar
-@onready var death_cry_audio := $DeathCry
 
 @export var damage_display : PackedScene
 
@@ -60,10 +59,6 @@ func on_received_damage(hit_box: Area2D) -> void:
 	if healthbar.get_current_health() <= 0:
 		queue_free()
 		on_death_signal.emit(5)
-		return
-		death_cry_audio.play()
-		death_cry_audio.finished.connect(queue_free)
-
 
 
 # make signal trigger animation?
