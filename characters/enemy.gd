@@ -8,7 +8,7 @@ extends CharacterBody2D
 # This needs to be retrieved as a node to get a global position from
 @onready var player : Node
 
-const SPEED := 50
+const SPEED := 100
 
 signal on_death_signal(experience_gained: int)
 

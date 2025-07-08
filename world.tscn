@@ -104,3 +104,13 @@ offset_bottom = 83.0
 theme = SubResource("Theme_036b0")
 theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
+
+[node name="Debug" type="Node2D" parent="."]
+position = Vector2(992, 112)
+
+[node name="Label" type="Label" parent="Debug"]
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 26.0
+offset_bottom = 15.0
+text = "LEVEL:"

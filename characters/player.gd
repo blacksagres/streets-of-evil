@@ -45,6 +45,7 @@ var PlayerParameters := {
 }
 
 func _ready() -> void:
+	attack_speed.wait_time = PlayerParameters[PlayerParameterNames.FIRE_RATE]
 	attack_speed.timeout.connect(attack)
 
 func _physics_process(delta: float) -> void:
@@ -54,11 +55,24 @@ func _physics_process(delta: float) -> void:
 	handle_command_input()
 
 	handle_animation(current_state)
-
-
-
+	
+	handle_attack_speed()
+	
 	# Process movement and execute it in game
 	move_and_slide()
+
+func get_player_parameters() -> Dictionary:
+	return {
+		"LEVEL": PlayerParameters[PlayerParameterNames.LEVEL],
+		"DAMAGE_MODIFIER": PlayerParameters[PlayerParameterNames.DAMAGE_MODIFIER],
+		"FIRE_RATE": PlayerParameters[PlayerParameterNames.FIRE_RATE]
+	}
+
+func handle_attack_speed() -> void:
+	if attack_speed.wait_time == PlayerParameters[PlayerParameterNames.FIRE_RATE]:
+		pass
+		
+	attack_speed.wait_time = PlayerParameters[PlayerParameterNames.FIRE_RATE]
 
 func increase_experience(amount: int) -> void:
 	PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE] += 10
@@ -133,8 +147,11 @@ func set_state(new_state: PlayerState) -> void:
 #
 #	The idea is to pass a percentage to the parameter, so:
 #	after leveling up you can inrease one of these parameters by 10%, for example
-#
 func increase_parameter(parameter: PlayerParameterNames, amount: float) -> void:
+	if parameter == PlayerParameterNames.FIRE_RATE:
+		PlayerParameters[parameter] = amount
+		return
+	
 	PlayerParameters[parameter] += amount
 	print(PlayerParameters)
 

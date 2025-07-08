@@ -7,7 +7,7 @@ extends Node2D
 @onready var player := $ActorsContainer/Player
 # The message in the center of the screen
 @onready var splash_text := $SplashText
-
+@onready var debug_label := $Debug/Label
 @onready var experience_gauge := $ExperienceGauge
 
 # MENUS
@@ -43,6 +43,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Vanishing text
+	debug_label.text = JSON.stringify(player.get_player_parameters(), "\t")
 	splash_text.modulate.a -= delta / 5
 	pass
 
@@ -71,7 +72,7 @@ func on_player_level_up() -> void:
 
 func on_fire_rate_boon_clicked() -> void:
 	print('attack speed incrased')
-	player.increase_parameter(player.PlayerParameterNames.FIRE_RATE, player.PlayerParameters[player.PlayerParameterNames.FIRE_RATE] * 1.2)
+	player.increase_parameter(player.PlayerParameterNames.FIRE_RATE, player.PlayerParameters[player.PlayerParameterNames.FIRE_RATE] / 1.2)
 	get_tree().paused = false
 	level_up_menu.visible = false
 	
