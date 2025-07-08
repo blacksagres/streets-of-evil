@@ -49,16 +49,9 @@ func on_received_damage(hit_box: Area2D) -> void:
 	if hit_box.has_method('get_hit_info'):
 		var hit_info = hit_box.get_hit_info()
 
-		var new_damage_text = damage_display.instantiate()
-		get_tree().current_scene.add_child(new_damage_text)
-		new_damage_text.global_position = global_position
-		new_damage_text.display_damage(hit_info.damage)
+		DamageDisplay.show_damage(get_tree().current_scene, global_position, hit_info.damage)
 
-
-		#healthbar.current_health_changed_signal.
-		# better to have function that deals damage?
 		healthbar.update_current_health(-hit_info.damage)
-		#print('"Oh no!" - Enemy says... ', hit_info.damage, ' damage!')
 
 
 	if hit_box.has_method('destroy_projectile'):

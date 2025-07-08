@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0amu1v20wlc4"]
 
-[ext_resource type="Script" uid="uid://bl1pdk1gmihmc" path="res://characters/effects/damage_display.gd" id="1_tuy48"]
+[ext_resource type="Script" uid="uid://bl1pdk1gmihmc" path="res://characters/effects/damage_display/damage_display.gd" id="1_tuy48"]
 
 [sub_resource type="Animation" id="Animation_tuy48"]
 length = 0.001

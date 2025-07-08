@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dlu7yrj8cd3d7" path="res://characters/hurtbox.gd" id="2_nhupr"]
 [ext_resource type="PackedScene" uid="uid://ddl14tax45g6q" path="res://components/healthbar.tscn" id="3_1ohc2"]
 [ext_resource type="AudioStream" uid="uid://fwndvhgtnimb" path="res://assets/audio/enemy-death.wav" id="5_toq4n"]
-[ext_resource type="PackedScene" uid="uid://d0amu1v20wlc4" path="res://characters/effects/DamageDisplay.tscn" id="6_u8tuc"]
+[ext_resource type="PackedScene" uid="uid://d0amu1v20wlc4" path="res://characters/effects/damage_display/DamageDisplay.tscn" id="6_u8tuc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbwbs"]
 
