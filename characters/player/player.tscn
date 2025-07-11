@@ -1,9 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://cleasu8qoohko"]
+[gd_scene load_steps=13 format=3 uid="uid://cleasu8qoohko"]
 
 [ext_resource type="Script" uid="uid://dftsxtkni3gv8" path="res://characters/player/player.gd" id="1_dnjla"]
 [ext_resource type="Script" uid="uid://brny1n4ohpgfh" path="res://characters/hitbox.gd" id="2_3eadt"]
+[ext_resource type="Script" uid="uid://lyapngj3dity" path="res://characters/player/player_status.gd" id="2_ixbpm"]
 [ext_resource type="Texture2D" uid="uid://7o3rjys2pew7" path="res://assets/scotty-frames.png" id="2_tory2"]
 [ext_resource type="Script" uid="uid://davfvldraeelq" path="res://characters/attack_speed_timer.gd" id="4_x0jl3"]
+
+[sub_resource type="Resource" id="Resource_c6leb"]
+script = ExtResource("2_ixbpm")
+damage_modifier = 1.0
+fire_rate = 0.5
+speed = 100
+level = 1
+current_experience = 0
+metadata/_custom_type_script = "uid://lyapngj3dity"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
 
@@ -69,6 +79,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_dnjla")
+status = SubResource("Resource_c6leb")
 
 [node name="PlayerSprites" type="Sprite2D" parent="."]
 position = Vector2(-16, -28)

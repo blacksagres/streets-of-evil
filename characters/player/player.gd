@@ -10,6 +10,8 @@ signal leveled_up_signal()
 @onready var laser_sight := $LaserSight
 @onready var attack_speed := $AttackSpeedTimer
 
+@export var status: PlayerStatus
+
 # External dependencies, weapons, equipment, etc
 
 @export var BULLET : PackedScene
@@ -47,6 +49,7 @@ var PlayerParameters := {
 func _ready() -> void:
 	attack_speed.wait_time = PlayerParameters[PlayerParameterNames.FIRE_RATE]
 	attack_speed.timeout.connect(attack)
+	status.level_up("DAMAGE_MODIFIER", 0.2)
 
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
