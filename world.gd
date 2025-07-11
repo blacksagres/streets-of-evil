@@ -4,7 +4,7 @@ extends Node2D
 
 @export var zombie_scene : PackedScene
 @onready var zombie_timer := $ZombieTimer
-@onready var player := $ActorsContainer/Player
+@export var player : Player
 # The message in the center of the screen
 @onready var splash_text := $SplashText
 @onready var debug_label := $Debug/Label
@@ -72,19 +72,18 @@ func on_player_level_up() -> void:
 
 func on_fire_rate_boon_clicked() -> void:
 	print('attack speed incrased')
-	player.increase_parameter(player.PlayerParameterNames.FIRE_RATE, player.PlayerParameters[player.PlayerParameterNames.FIRE_RATE] / 1.2)
+	player.increase_parameter("fire_rate")
 	get_tree().paused = false
 	level_up_menu.visible = false
 	
 func on_damage_boon_clicked() -> void:
 	print('damage incrased')
-	player.increase_parameter(player.PlayerParameterNames.DAMAGE_MODIFIER, player.PlayerParameters[player.PlayerParameterNames.DAMAGE_MODIFIER] * 1.2)
+	player.increase_parameter("damage_modifier")
 	get_tree().paused = false
 	level_up_menu.visible = false
 	
 func on_movement_speed_boon_clicked() -> void:
 	print('movement speed incrased')
-	player.increase_parameter(player.PlayerParameterNames.SPEED, 0.2)
-	player.increase_parameter(player.PlayerParameterNames.SPEED, player.PlayerParameters[player.PlayerParameterNames.SPEED] * 1.2)
+	player.increase_parameter("speed")
 	get_tree().paused = false
 	level_up_menu.visible = false

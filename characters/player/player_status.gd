@@ -8,13 +8,11 @@ class_name PlayerStatus
 @export var level: int = 1
 @export var current_experience: int = 0
 
-func level_up(parameter: String, increase: float) -> void:
+func level_up(parameter: String) -> void:
 	match parameter:
-		"damage_modifier": damage_modifier += damage_modifier * increase
-		"fire_rate": fire_rate += fire_rate * increase
-		"move_speed": speed += speed * increase
-		"level": level += increase
-		"current_experience": current_experience += increase
+		"damage_modifier": damage_modifier *= 1.20
+		"fire_rate": fire_rate  -= 1.15
+		"move_speed": speed *= 1.15
 		_:
 			push_error("Unknown parameter: " + parameter)
 

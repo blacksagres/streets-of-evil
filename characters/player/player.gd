@@ -30,26 +30,10 @@ var AnimationDictionary := {
 
 var current_state : PlayerState
 
-enum PlayerParameterNames {
-	FIRE_RATE,
-	DAMAGE_MODIFIER,
-	SPEED,
-	LEVEL,
-	CURRENT_EXPERIENCE
-}
-
-var PlayerParameters := {
-	PlayerParameterNames.DAMAGE_MODIFIER: 1,
-	PlayerParameterNames.FIRE_RATE: 0.5,
-	PlayerParameterNames.SPEED: 100,
-	PlayerParameterNames.LEVEL: 1,
-	PlayerParameterNames.CURRENT_EXPERIENCE: 0
-}
-
 func _ready() -> void:
-	attack_speed.wait_time = PlayerParameters[PlayerParameterNames.FIRE_RATE]
+	attack_speed.wait_time = status.fire_rate
 	attack_speed.timeout.connect(attack)
-	status.level_up("DAMAGE_MODIFIER", 0.2)
+	
 
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
@@ -59,37 +43,38 @@ func _physics_process(delta: float) -> void:
 
 	handle_animation(current_state)
 	
-	handle_attack_speed()
-	
 	# Process movement and execute it in game
 	move_and_slide()
 
 func get_player_parameters() -> Dictionary:
 	return {
-		"LEVEL": PlayerParameters[PlayerParameterNames.LEVEL],
-		"DAMAGE_MODIFIER": PlayerParameters[PlayerParameterNames.DAMAGE_MODIFIER],
-		"FIRE_RATE": PlayerParameters[PlayerParameterNames.FIRE_RATE]
+		"LEVEL": status.level,
+		"DAMAGE_MODIFIER": status.damage_modifier,
+		"FIRE_RATE": status.fire_rate
 	}
 
-func handle_attack_speed() -> void:
-	if attack_speed.wait_time == PlayerParameters[PlayerParameterNames.FIRE_RATE]:
-		pass
-		
-	attack_speed.wait_time = PlayerParameters[PlayerParameterNames.FIRE_RATE]
-
 func increase_experience(amount: int) -> void:
-	PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE] += 10
+	status.current_experience += 10
 
-	if PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE] == 100:
-		PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE] = 0
-		PlayerParameters[PlayerParameterNames.LEVEL] += 1
+	if status.current_experience == 100:
+		status.current_experience = 0
+		status.level += 1
 		leveled_up_signal.emit()
 
-	gained_experience_signal.emit(PlayerParameters[PlayerParameterNames.CURRENT_EXPERIENCE])
+	gained_experience_signal.emit(status.current_experience)
+	
+func increase_parameter(parameter: String) -> void: 
+	var possible_parameter = status.get("parameter")
+	
+	if not possible_parameter:
+		push_error("Invalid parameter: ", parameter)
+	
+	status.level_up(parameter)
+		
 
 func attack() -> void:
 	var new_bullet = BULLET.instantiate()
-	new_bullet.damage_modifier += PlayerParameters[PlayerParameterNames.DAMAGE_MODIFIER]
+	new_bullet.damage_modifier += status.damage_modifier
 	get_tree().root.add_child(new_bullet)
 
 	# this makes a new origin point from the bullet to shoot from
@@ -128,7 +113,7 @@ func handle_command_input() -> void:
 		#
 		#return
 		var new_bullet = BULLET.instantiate()
-		new_bullet.damage_modifier = PlayerParameters[PlayerParameterNames.DAMAGE_MODIFIER]
+		new_bullet.damage_modifier = status.damage_modifier
 		get_tree().root.add_child(new_bullet)
 
 		# this makes a new origin point from the bullet to shoot from
@@ -146,17 +131,6 @@ func handle_command_input() -> void:
 
 func set_state(new_state: PlayerState) -> void:
 	current_state = new_state
-
-#
-#	The idea is to pass a percentage to the parameter, so:
-#	after leveling up you can inrease one of these parameters by 10%, for example
-func increase_parameter(parameter: PlayerParameterNames, amount: float) -> void:
-	if parameter == PlayerParameterNames.FIRE_RATE:
-		PlayerParameters[parameter] = amount
-		return
-	
-	PlayerParameters[parameter] += amount
-	print(PlayerParameters)
 
 func is_walking() -> void:
 	current_state = PlayerState.WALK
@@ -191,7 +165,7 @@ func handle_movement_input() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * PlayerParameters[PlayerParameterNames.SPEED]
+	velocity = direction * status.speed
 
 	flip_sprites()
 

@@ -21,9 +21,10 @@ border_color = Color(0.348161, 0.54898, 0.570556, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
 bg_color = Color(9.62615e-08, 0.691082, 0.654206, 1)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_aqk2v")
 zombie_scene = ExtResource("2_036b0")
+player = NodePath("ActorsContainer/Player")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.3, 0.3, 0.3, 1)
