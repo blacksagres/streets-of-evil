@@ -1,9 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-signal gained_experience_signal(amount: int)
-signal leveled_up_signal()
-
 @onready var animation_player := $AnimationPlayer
 @onready var character_sprite := $PlayerSprites
 
@@ -53,15 +50,6 @@ func get_player_parameters() -> Dictionary:
 		"FIRE_RATE": status.fire_rate
 	}
 
-func increase_experience(amount: int) -> void:
-	status.current_experience += 10
-
-	if status.current_experience == 100:
-		status.current_experience = 0
-		status.level += 1
-		leveled_up_signal.emit()
-
-	gained_experience_signal.emit(status.current_experience)
 	
 func increase_parameter(parameter: String) -> void: 
 	var possible_parameter = status.get("parameter")

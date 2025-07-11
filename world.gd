@@ -24,8 +24,8 @@ func _input(event):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)
-	player.gained_experience_signal.connect(on_player_experience_gained)
-	player.leveled_up_signal.connect(on_player_level_up)
+	player.status.gained_experience.connect(on_player_experience_gained)
+	player.status.leveled_up.connect(on_player_level_up)
 	
 	# Hidden by default
 	level_up_menu.visible = false
@@ -52,7 +52,7 @@ func on_mob_timeout_spawn():
 	# Create a new instance of the Mob scene.
 	var mob = zombie_scene.instantiate()
 	
-	mob.connect('on_death_signal', player.increase_experience)
+	mob.connect('on_death_signal', player.status.increase_experience)
 
 	# Choose a random location on Path2D.
 	var mob_spawn_location = $SpawnPath/SpawnPathLocation

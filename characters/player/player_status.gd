@@ -8,6 +8,19 @@ class_name PlayerStatus
 @export var level: int = 1
 @export var current_experience: int = 0
 
+signal leveled_up()
+signal gained_experience(current_amount: int)
+
+func increase_experience(experience_amount: int) -> void: 
+	current_experience += experience_amount
+	
+	if current_experience > 100:
+		current_experience = current_experience - 100
+		level += 1
+		leveled_up.emit()
+		
+	gained_experience.emit(current_experience)
+
 func level_up(parameter: String) -> void:
 	match parameter:
 		"damage_modifier": damage_modifier *= 1.20
