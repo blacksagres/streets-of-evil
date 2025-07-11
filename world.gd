@@ -25,7 +25,11 @@ func _input(event):
 func _ready() -> void:
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)
 	player.status.gained_experience.connect(on_player_experience_gained)
+	# Enables the game to give options on what to increase
 	player.status.leveled_up.connect(on_player_level_up)
+	
+	# The actual status increase after leveling up, too granular?
+	player.status.increased_status.connect(on_player_status_increased)
 	
 	# Hidden by default
 	level_up_menu.visible = false
@@ -39,6 +43,8 @@ func _ready() -> void:
 	fire_rate_boon.connect("pressed", on_fire_rate_boon_clicked)
 	damage_boon.connect("pressed", on_damage_boon_clicked)
 	movement_speed_boon.connect("pressed", on_movement_speed_boon_clicked)
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -56,7 +62,8 @@ func on_mob_timeout_spawn():
 
 	# Choose a random location on Path2D.
 	var mob_spawn_location = $SpawnPath/SpawnPathLocation
-	mob_spawn_location.progress_ratio = randf()
+	mob_spawn_location.progress_ratio = randf() 
+	print({ "rand": mob_spawn_location.progress_ratio })
 	# Set the mob's position to the random location.
 	mob.position = mob_spawn_location.position
 
@@ -69,6 +76,10 @@ func on_player_experience_gained(amount: int) -> void:
 func on_player_level_up() -> void:
 	get_tree().paused = true
 	level_up_menu.visible = true
+
+func on_player_status_increased(_status: Dictionary) -> void:
+	print('zombies will spawn faster!')
+	zombie_timer.wait_time *= 0.9
 
 func on_fire_rate_boon_clicked() -> void:
 	print('attack speed incrased')
