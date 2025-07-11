@@ -31,6 +31,8 @@ func _ready() -> void:
 	attack_speed.wait_time = status.fire_rate
 	attack_speed.timeout.connect(attack)
 	
+	status.increased_status.connect(on_status_increase)
+	
 
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
@@ -42,6 +44,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Process movement and execute it in game
 	move_and_slide()
+	
+func on_status_increase(new_status: Dictionary) -> void:
+	attack_speed.wait_time = new_status.fire_rate
 
 func get_player_parameters() -> Dictionary:
 	return {
@@ -50,15 +55,6 @@ func get_player_parameters() -> Dictionary:
 		"FIRE_RATE": status.fire_rate
 	}
 
-	
-func increase_parameter(parameter: String) -> void: 
-	var possible_parameter = status.get("parameter")
-	
-	if not possible_parameter:
-		push_error("Invalid parameter: ", parameter)
-	
-	status.level_up(parameter)
-		
 
 func attack() -> void:
 	var new_bullet = BULLET.instantiate()

@@ -72,18 +72,18 @@ func on_player_level_up() -> void:
 
 func on_fire_rate_boon_clicked() -> void:
 	print('attack speed incrased')
-	player.increase_parameter("fire_rate")
+	player.status.level_up("fire_rate")
 	get_tree().paused = false
 	level_up_menu.visible = false
 	
 func on_damage_boon_clicked() -> void:
 	print('damage incrased')
-	player.increase_parameter("damage_modifier")
+	player.status.level_up("damage_modifier")
 	get_tree().paused = false
 	level_up_menu.visible = false
 	
 func on_movement_speed_boon_clicked() -> void:
 	print('movement speed incrased')
-	player.increase_parameter("speed")
+	player.status.level_up("speed")
 	get_tree().paused = false
 	level_up_menu.visible = false

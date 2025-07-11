@@ -11,6 +11,8 @@ class_name PlayerStatus
 signal leveled_up()
 signal gained_experience(current_amount: int)
 
+signal increased_status(status: Dictionary)
+
 func increase_experience(experience_amount: int) -> void: 
 	current_experience += experience_amount
 	
@@ -23,11 +25,14 @@ func increase_experience(experience_amount: int) -> void:
 
 func level_up(parameter: String) -> void:
 	match parameter:
-		"damage_modifier": damage_modifier *= 1.20
-		"fire_rate": fire_rate  -= 1.15
+		"damage_modifier": damage_modifier += 10
+		"fire_rate": fire_rate  *= 0.85
 		"move_speed": speed *= 1.15
 		_:
 			push_error("Unknown parameter: " + parameter)
+	
+	increased_status.emit(get_status())
+	
 
 func get_status() -> Dictionary: 
 	return {
