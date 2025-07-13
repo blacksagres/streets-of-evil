@@ -9,7 +9,6 @@ const DAMAGE = 10
 
 @onready var barrel := $Barrel
 
-
 ## Shoots projectiles from the weapon. 
 ##
 ## [param damage_modifier] a multiplier based on the player's level
@@ -25,6 +24,7 @@ func shoot(damage_modifier: float, direction: Vector2) -> void:
 	#get_tree().root.add_child(handgun_bullet)
 	#
 	#return
+
 	
 	## SHOTGUN
 	
