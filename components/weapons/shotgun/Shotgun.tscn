@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhp7iiqpqbpt5"]
 
-[ext_resource type="Script" uid="uid://cj54h8qy3ayy7" path="res://components/weapons/bullet.gd" id="1_w8qg8"]
+[ext_resource type="Script" uid="uid://cj54h8qy3ayy7" path="res://components/weapons/handgun/bullet.gd" id="1_w8qg8"]
 [ext_resource type="Texture2D" uid="uid://co225e6dvcspt" path="res://assets/weapons/projectile.png" id="2_wm2fw"]
 [ext_resource type="AudioStream" uid="uid://dkofy208f8gxy" path="res://assets/audio/pew-pew-short.wav" id="3_vu12h"]
 

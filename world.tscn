@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dl5pmj3xjvpde" path="res://assets/pixel-art-street-test.jpg" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://csw4bw3qe8a6s" path="res://characters/enemy.tscn" id="2_036b0"]
-[ext_resource type="PackedScene" uid="uid://boabdmx1vydgf" path="res://components/weapons/Bullet.tscn" id="3_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://boabdmx1vydgf" path="res://components/weapons/handgun/Bullet.tscn" id="3_aqk2v"]
 
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
 _data = {

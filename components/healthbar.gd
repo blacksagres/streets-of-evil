@@ -1,3 +1,4 @@
+## Not a scene yet but it could be
 class_name Healthbar
 
 extends ProgressBar
