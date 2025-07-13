@@ -16,6 +16,8 @@ signal on_death_signal(experience_gained: int)
 func _ready() -> void:
 	player = get_node("/root/World/ActorsContainer/Player")
 	hurtbox.hit_taken_signal.connect(on_received_damage)
+	
+	healthbar.set_initial_health(40)
 	healthbar.current_health_changed_signal.connect(on_current_health_changed)
 
 	# setup
