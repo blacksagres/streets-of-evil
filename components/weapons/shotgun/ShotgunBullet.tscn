@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://sfw7d5nj7kmu"]
+
+[ext_resource type="Script" uid="uid://8qek6iwv2gr1" path="res://components/weapons/shotgun/shotgun_bullet.gd" id="1_kobuc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqerm"]
+radius = 8.0
+
+[node name="ShotgunBullet" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_kobuc")
+
+[node name="BulletSprite" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(1, 1, 0.301961, 1)
+
+[node name="ShotgunBulletHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yqerm")

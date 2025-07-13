@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cleasu8qoohko"]
+[gd_scene load_steps=14 format=3 uid="uid://cleasu8qoohko"]
 
 [ext_resource type="Script" uid="uid://dftsxtkni3gv8" path="res://characters/player/player.gd" id="1_dnjla"]
 [ext_resource type="Script" uid="uid://brny1n4ohpgfh" path="res://characters/hitbox.gd" id="2_3eadt"]
 [ext_resource type="Script" uid="uid://lyapngj3dity" path="res://characters/player/player_status.gd" id="2_ixbpm"]
 [ext_resource type="Texture2D" uid="uid://7o3rjys2pew7" path="res://assets/scotty-frames.png" id="2_tory2"]
+[ext_resource type="PackedScene" uid="uid://c7uqq6xixufdi" path="res://components/weapons/shotgun/Shotgun.tscn" id="3_c6leb"]
 [ext_resource type="Script" uid="uid://davfvldraeelq" path="res://characters/attack_speed_timer.gd" id="4_x0jl3"]
 
 [sub_resource type="Resource" id="Resource_c6leb"]
@@ -112,7 +113,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="LaserSight" type="Line2D" parent="."]
-position = Vector2(16, -15)
+position = Vector2(80, -13)
 points = PackedVector2Array(0, 0)
 width = 2.0
 default_color = Color(1, 0.04, 0.04, 1)
@@ -121,3 +122,6 @@ default_color = Color(1, 0.04, 0.04, 1)
 wait_time = 0.5
 autostart = true
 script = ExtResource("4_x0jl3")
+
+[node name="Shotgun" parent="." instance=ExtResource("3_c6leb")]
+position = Vector2(48, -13)

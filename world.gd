@@ -18,9 +18,6 @@ extends Node2D
 @onready var damage_boon := $Menus/LevelUpMenu/DamageBoon
 @onready var movement_speed_boon := $Menus/LevelUpMenu/MovementSpeedBoon
 
-func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		print("Mouse clicked at", event.position)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)

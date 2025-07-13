@@ -14,6 +14,10 @@ config/name="streets-of-evil"
 run/main_scene="uid://cfm1g0c2lt806"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[autoload]
+
+BulletSingleton="*res://components/weapons/handgun/bullet.gd"
+
 [display]
 
 window/size/viewport_width=1920

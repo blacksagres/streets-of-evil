@@ -1,28 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhp7iiqpqbpt5"]
+[gd_scene load_steps=3 format=3 uid="uid://c7uqq6xixufdi"]
 
-[ext_resource type="Script" uid="uid://cj54h8qy3ayy7" path="res://components/weapons/handgun/bullet.gd" id="1_w8qg8"]
-[ext_resource type="Texture2D" uid="uid://co225e6dvcspt" path="res://assets/weapons/projectile.png" id="2_wm2fw"]
-[ext_resource type="AudioStream" uid="uid://dkofy208f8gxy" path="res://assets/audio/pew-pew-short.wav" id="3_vu12h"]
+[ext_resource type="Script" uid="uid://cgdwb1uhabkov" path="res://components/weapons/shotgun/shotgun.gd" id="1_m1s0u"]
+[ext_resource type="PackedScene" uid="uid://sfw7d5nj7kmu" path="res://components/weapons/shotgun/ShotgunBullet.tscn" id="2_mp6yt"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnhcj"]
-radius = 5.0
+[node name="Shotgun" type="Node2D"]
+script = ExtResource("1_m1s0u")
+shotgun_bullet = ExtResource("2_mp6yt")
 
-[node name="Bullet" type="Area2D"]
-collision_layer = 2
-collision_mask = 0
-monitoring = false
-script = ExtResource("1_w8qg8")
+[node name="ShotgunSprite" type="ColorRect" parent="."]
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 8.0
+color = Color(0.879371, 0.505631, 0.057937, 1)
 
-[node name="Projectile" type="Sprite2D" parent="."]
-position = Vector2(0, -5)
-rotation = 1.5708
-texture = ExtResource("2_wm2fw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(13, -5)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_hnhcj")
-
-[node name="PewPew" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_vu12h")
-autoplay = true
+[node name="Barrel" type="Marker2D" parent="."]
+position = Vector2(32, 0)
