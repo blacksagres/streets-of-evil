@@ -113,8 +113,8 @@ libraries = {
 autoplay = "idle"
 
 [node name="LaserSight" type="Line2D" parent="."]
-position = Vector2(80, -13)
-points = PackedVector2Array(0, 0)
+position = Vector2(72, -18)
+points = PackedVector2Array(0, 1)
 width = 2.0
 default_color = Color(1, 0.04, 0.04, 1)
 
