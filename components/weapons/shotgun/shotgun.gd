@@ -37,8 +37,9 @@ func shoot(damage_modifier: float, direction: Vector2) -> void:
 		
 		bullet.speed = SPEED
 		bullet.damage = DAMAGE * damage_modifier
-
-		var angle_offset = lerp(-MAXIMUM_SPREAD, MAXIMUM_SPREAD, float(i)/BULLET_COUNT)
+		
+		var interpolation_variation = float(i)/(BULLET_COUNT-1)
+		var angle_offset = lerp(-MAXIMUM_SPREAD, MAXIMUM_SPREAD, interpolation_variation)
 		# this "straightens up" the bullet
 		bullet.rotation = barrel.global_rotation
 		
