@@ -3,7 +3,8 @@ extends RayCast2D
 @export var cast_speed := 7000.0
 @export var max_length := 1400.0
 
-@onready var laser_line := $LaserLine
+@onready var laser_line :Line2D = $LaserLine
+@onready var beam_particles := $BeamParticles2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _physics_process(delta: float) -> void:
 		cast_speed * delta
 	)
 	
+	var laser_start_position := laser_line.points[0]
 	var laser_end_position := target_position
 	
 	# Apparently this is important to make sure we 
@@ -26,6 +28,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_colliding():
 		laser_end_position = to_local(get_collision_point())
+		
 	
 	laser_line.points = [Vector2.ZERO, laser_end_position]
 	
