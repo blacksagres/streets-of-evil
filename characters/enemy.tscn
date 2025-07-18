@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d0amu1v20wlc4" path="res://characters/effects/damage_display/DamageDisplay.tscn" id="6_u8tuc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbwbs"]
-height = 48.0
+height = 52.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
 radius = 21.0
@@ -22,7 +22,7 @@ texture = ExtResource("2_ggbst")
 flip_h = true
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_dbwbs")
 
 [node name="Hurtbox" type="Area2D" parent="."]
