@@ -36,7 +36,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
 	handle_movement_input()
-	handle_laser_sight()
 
 	handle_animation(current_state)
 	
@@ -57,11 +56,6 @@ func attack() -> void:
 	if shotgun and shotgun.has_method("shoot"):
 		var aim_direction := global_position.direction_to(get_global_mouse_position())
 		shotgun.shoot(status.damage_modifier, aim_direction)
-		
-
-func handle_laser_sight() -> void:
-	# Rotates the laser together with the character, make it stretch "infinitely"
-	laser_sight.points = [Vector2.ZERO, Vector2.RIGHT * 10000]
 
 # STATE
 
