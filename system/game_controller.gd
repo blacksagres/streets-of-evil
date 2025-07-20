@@ -14,3 +14,6 @@ func pause() -> void:
 	
 func resume() -> void: 
 	state = GameState.PLAYING
+
+func start() -> void:
+	state = GameState.PLAYING
