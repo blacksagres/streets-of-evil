@@ -28,7 +28,7 @@ player = NodePath("ActorsContainer/Player")
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.3, 0.3, 0.3, 1)
 z_index = -1
-position = Vector2(992.239, 549.695)
+position = Vector2(992, 542)
 scale = Vector2(1.8366, 1.78189)
 texture = ExtResource("1_tlwt5")
 
@@ -46,6 +46,7 @@ Can you make it?"
 position = Vector2(1008, 568)
 
 [node name="SpawnPath" type="Path2D" parent="."]
+visible = false
 scale = Vector2(5.66667, 5.66667)
 curve = SubResource("Curve2D_tlwt5")
 
@@ -94,6 +95,13 @@ offset_top = 560.0
 offset_right = 1088.0
 offset_bottom = 591.0
 text = "INCREASE MOVE SPEED"
+
+[node name="StartMenu" type="Node2D" parent="Menus"]
+
+[node name="Background" type="Sprite2D" parent="Menus/StartMenu"]
+position = Vector2(1046, 589)
+scale = Vector2(1.9375, 1.9375)
+texture = ExtResource("1_tlwt5")
 
 [node name="ExperienceGauge" type="ProgressBar" parent="."]
 offset_left = 64.0

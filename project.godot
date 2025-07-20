@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 BulletSingleton="*res://components/weapons/handgun/bullet.gd"
+GameController="*res://system/game_controller.gd"
 
 [display]
 
@@ -29,7 +30,8 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
-"res://assets/": "purple"
+"res://assets/": "purple",
+"res://system/": "red"
 }
 
 [input]
