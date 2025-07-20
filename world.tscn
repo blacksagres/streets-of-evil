@@ -1,15 +1,62 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene load_steps=15 format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dl5pmj3xjvpde" path="res://assets/pixel-art-street-test.jpg" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://csw4bw3qe8a6s" path="res://characters/enemy.tscn" id="2_036b0"]
+[ext_resource type="FontFile" uid="uid://bm80lk671tqyh" path="res://assets/fonts/Jersey10-Regular.ttf" id="5_036b0"]
 
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 352, 0, 0, 0, 0, 0, 352, 192, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0)
 }
 point_count = 5
+
+[sub_resource type="Theme" id="Theme_dwbse"]
+default_font = ExtResource("5_036b0")
+default_font_size = 250
+
+[sub_resource type="Theme" id="Theme_pkg7o"]
+default_font = ExtResource("5_036b0")
+
+[sub_resource type="Animation" id="Animation_036b0"]
+resource_name = "blink"
+length = 2.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewGame:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.4), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dwbse"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewGame:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pkg7o"]
+_data = {
+&"RESET": SubResource("Animation_dwbse"),
+&"blink": SubResource("Animation_036b0")
+}
 
 [sub_resource type="Theme" id="Theme_036b0"]
 
@@ -28,8 +75,8 @@ player = NodePath("ActorsContainer/Player")
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.3, 0.3, 0.3, 1)
 z_index = -1
-position = Vector2(992, 542)
-scale = Vector2(1.8366, 1.78189)
+position = Vector2(960.118, 540.153)
+scale = Vector2(1.77756, 1.77581)
 texture = ExtResource("1_tlwt5")
 
 [node name="SplashText" type="RichTextLabel" parent="."]
@@ -97,11 +144,45 @@ offset_bottom = 591.0
 text = "INCREASE MOVE SPEED"
 
 [node name="StartMenu" type="Node2D" parent="Menus"]
+z_index = 10
 
 [node name="Background" type="Sprite2D" parent="Menus/StartMenu"]
-position = Vector2(1046, 589)
-scale = Vector2(1.9375, 1.9375)
+modulate = Color(0.12549, 0, 0.0313726, 1)
+position = Vector2(962.875, 542)
+scale = Vector2(1.77245, 1.78289)
 texture = ExtResource("1_tlwt5")
+
+[node name="Menu" type="RichTextLabel" parent="Menus/StartMenu"]
+offset_left = 288.0
+offset_top = 112.0
+offset_right = 1656.0
+offset_bottom = 504.0
+theme = SubResource("Theme_dwbse")
+theme_override_colors/default_color = Color(0.926299, 2.4306e-06, 1.92523e-06, 1)
+theme_override_colors/font_outline_color = Color(0.20871, 0.20871, 0.20871, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 100
+text = "STREETS OF EVIL"
+
+[node name="NewGame" type="Label" parent="Menus/StartMenu"]
+process_mode = 2
+offset_left = 808.0
+offset_top = 528.0
+offset_right = 1112.0
+offset_bottom = 657.0
+theme = SubResource("Theme_pkg7o")
+theme_override_font_sizes/font_size = 70
+text = "NEW GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuItemAnimatinon" type="AnimationPlayer" parent="Menus/StartMenu"]
+process_mode = 2
+libraries = {
+&"": SubResource("AnimationLibrary_pkg7o")
+}
+autoplay = "blink"
 
 [node name="ExperienceGauge" type="ProgressBar" parent="."]
 offset_left = 64.0
@@ -113,9 +194,11 @@ theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
 
 [node name="Debug" type="Node2D" parent="."]
+visible = false
 position = Vector2(992, 112)
 
 [node name="Label" type="Label" parent="Debug"]
+visible = false
 offset_left = -24.0
 offset_top = -8.0
 offset_right = 26.0

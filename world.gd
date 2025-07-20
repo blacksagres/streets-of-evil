@@ -20,7 +20,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_tree().paused = true
+	
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)
 	player.status.gained_experience.connect(on_player_experience_gained)
 	# Enables the game to give options on what to increase
@@ -46,6 +46,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	get_tree().paused = [
+		GameController.GameState.PAUSED, 
+		GameController.GameState.START_MENU
+	].has(GameController.state) 
+	
 	# Vanishing text
 	debug_label.text = JSON.stringify(player.get_player_parameters(), "\t")
 	splash_text.modulate.a -= delta / 5
