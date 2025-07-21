@@ -7,6 +7,8 @@ enum GameState {
 	GAME_OVER
 }
 
+signal game_state_changed(new_state: GameState)
+
 var state := GameState.START_MENU
 
 func pause() -> void:

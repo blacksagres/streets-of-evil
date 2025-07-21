@@ -1,43 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgqbjsucu2qbf"]
+[gd_scene load_steps=6 format=3 uid="uid://dgqbjsucu2qbf"]
 
 [ext_resource type="Texture2D" uid="uid://dl5pmj3xjvpde" path="res://assets/pixel-art-street-test.jpg" id="1_mpy17"]
+[ext_resource type="Script" uid="uid://cgoha77r340y3" path="res://components/menus/start_menu.gd" id="1_wqopl"]
 [ext_resource type="FontFile" uid="uid://bm80lk671tqyh" path="res://assets/fonts/Jersey10-Regular.ttf" id="2_gtdlh"]
-[ext_resource type="Script" uid="uid://da7w6mqhncgfm" path="res://components/menus/menu_button.gd" id="3_gtdlh"]
+[ext_resource type="PackedScene" uid="uid://coocens6no01y" path="res://components/menus/components/new_game_button.tscn" id="4_wqopl"]
 
 [sub_resource type="Theme" id="Theme_dwbse"]
 default_font = ExtResource("2_gtdlh")
 default_font_size = 250
 
-[sub_resource type="Theme" id="Theme_mpy17"]
-
-[sub_resource type="Animation" id="Animation_mpy17"]
-resource_name = "pulse"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.03333, 1.96667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.5), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5)]
-}
-
-[sub_resource type="Animation" id="Animation_gtdlh"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqopl"]
-_data = {
-&"RESET": SubResource("Animation_gtdlh"),
-&"pulse": SubResource("Animation_mpy17")
-}
-
 [node name="StartMenu" type="Node2D"]
 z_index = 10
+script = ExtResource("1_wqopl")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.12549, 0, 0.0313726, 1)
@@ -58,23 +32,4 @@ theme_override_constants/outline_size = 15
 theme_override_constants/shadow_outline_size = 100
 text = "STREETS OF EVIL"
 
-[node name="MenuButton" type="Node2D" parent="."]
-process_mode = 3
-script = ExtResource("3_gtdlh")
-
-[node name="Button" type="Button" parent="MenuButton"]
-modulate = Color(1, 1, 1, 0.860691)
-offset_left = 760.0
-offset_top = 472.0
-offset_right = 1272.0
-offset_bottom = 556.0
-theme = SubResource("Theme_mpy17")
-theme_override_fonts/font = ExtResource("2_gtdlh")
-theme_override_font_sizes/font_size = 70
-text = "NEW GAME"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_wqopl")
-}
-autoplay = "pulse"
+[node name="NewGameButton" parent="." instance=ExtResource("4_wqopl")]

@@ -42,19 +42,21 @@ func _ready() -> void:
 	damage_boon.connect("pressed", on_damage_boon_clicked)
 	movement_speed_boon.connect("pressed", on_movement_speed_boon_clicked)
 	
-	
+	GameController.game_state_changed.connect(_on_game_state_changed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	get_tree().paused = [
-		GameController.GameState.PAUSED, 
-		GameController.GameState.START_MENU
-	].has(GameController.state) 
-	
 	# Vanishing text
 	debug_label.text = JSON.stringify(player.get_player_parameters(), "\t")
 	splash_text.modulate.a -= delta / 5
 	pass
+	
+
+func _on_game_state_changed(new_state: GameController.GameState) -> void:
+		get_tree().paused = [
+		GameController.GameState.PAUSED, 
+		GameController.GameState.START_MENU
+	].has(GameController.state)
 
 
 func on_mob_timeout_spawn():
