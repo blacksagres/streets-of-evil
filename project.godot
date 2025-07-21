@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 BulletSingleton="*res://components/weapons/handgun/bullet.gd"
-GameController="*res://system/game_controller.gd"
+GameStateManager="*res://system/game_state_manager.gd"
 
 [display]
 

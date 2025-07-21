@@ -44,7 +44,7 @@ func _ready() -> void:
 	damage_boon.connect("pressed", on_damage_boon_clicked)
 	movement_speed_boon.connect("pressed", on_movement_speed_boon_clicked)
 	
-	GameController.game_state_changed.connect(_on_game_state_changed)
+	GameStateManager.game_state_changed.connect(_on_game_state_changed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -54,11 +54,11 @@ func _process(delta: float) -> void:
 	pass
 	
 
-func _on_game_state_changed(new_state: GameController.GameState) -> void:
+func _on_game_state_changed(new_state: GameStateManager.GameState) -> void:
 	print('STATE CHANGED ', - new_state)
 	get_tree().paused = [
-	GameController.GameState.PAUSED, 
-	GameController.GameState.START_MENU
+	GameStateManager.GameState.PAUSED, 
+	GameStateManager.GameState.START_MENU
 	].has(new_state)
 
 

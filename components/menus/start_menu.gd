@@ -8,4 +8,4 @@ func _ready() -> void:
 func _on_new_game_click() -> void:
 	self.z_index = -10
 	self.visible = false
-	GameController.start()
+	GameStateManager.start()
