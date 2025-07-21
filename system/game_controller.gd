@@ -13,9 +13,12 @@ var state := GameState.START_MENU
 
 func pause() -> void:
 	state = GameState.PAUSED
+	game_state_changed.emit(state)
 	
 func resume() -> void: 
 	state = GameState.PLAYING
+	game_state_changed.emit(state)
 
 func start() -> void:
 	state = GameState.PLAYING
+	game_state_changed.emit(state)

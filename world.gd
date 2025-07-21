@@ -20,6 +20,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# WORLD IS PAUSED BY DEFAULT!
+	get_tree().paused = true
 	
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)
 	player.status.gained_experience.connect(on_player_experience_gained)
@@ -53,10 +55,11 @@ func _process(delta: float) -> void:
 	
 
 func _on_game_state_changed(new_state: GameController.GameState) -> void:
-		get_tree().paused = [
-		GameController.GameState.PAUSED, 
-		GameController.GameState.START_MENU
-	].has(GameController.state)
+	print('STATE CHANGED ', - new_state)
+	get_tree().paused = [
+	GameController.GameState.PAUSED, 
+	GameController.GameState.START_MENU
+	].has(new_state)
 
 
 func on_mob_timeout_spawn():
