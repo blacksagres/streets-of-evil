@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene load_steps=11 format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://dl5pmj3xjvpde" path="res://assets/pixel-art-street-test.jpg" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://csw4bw3qe8a6s" path="res://characters/enemy.tscn" id="2_036b0"]
 [ext_resource type="PackedScene" uid="uid://dgqbjsucu2qbf" path="res://components/menus/start_menu.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://ku0umq8lpd4n" path="res://components/menus/pause_menu.tscn" id="6_dwbse"]
 
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
 _data = {
@@ -61,6 +62,7 @@ autostart = true
 [node name="Menus" type="Node2D" parent="."]
 
 [node name="LevelUpMenu" type="Node2D" parent="Menus"]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Menus/LevelUpMenu"]
 offset_left = 832.0
@@ -98,6 +100,12 @@ offset_bottom = 591.0
 text = "INCREASE MOVE SPEED"
 
 [node name="StartMenu" parent="Menus" instance=ExtResource("5_036b0")]
+process_mode = 2
+visible = false
+
+[node name="PauseMenu" parent="Menus" instance=ExtResource("6_dwbse")]
+process_mode = 3
+visible = false
 
 [node name="ExperienceGauge" type="ProgressBar" parent="."]
 offset_left = 64.0

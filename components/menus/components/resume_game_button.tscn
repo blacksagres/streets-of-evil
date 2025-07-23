@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1c2wocuhgwfo"]
+
+[ext_resource type="PackedScene" uid="uid://dycepdknp5ji1" path="res://components/menus/components/menu_button.tscn" id="1_m3oen"]
+
+[node name="ResumeGameButton" instance=ExtResource("1_m3oen")]
+
+[node name="Button" parent="." index="0"]
+text = "RESUME GAME"

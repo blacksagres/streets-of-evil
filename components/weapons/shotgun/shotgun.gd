@@ -46,7 +46,7 @@ func shoot(damage_modifier: float, direction: Vector2) -> void:
 		bullet.direction = direction.rotated(angle_offset)
 		
 		bullet.global_position = barrel.global_position
-		print('position', position)
+		
 		# We always add the bullet in the world, 
 		# otherwise the bullet will remain "attached" to the player and rotates
 		# with the scene.
