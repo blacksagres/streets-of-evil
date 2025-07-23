@@ -22,3 +22,11 @@ func resume() -> void:
 func start() -> void:
 	state = GameState.PLAYING
 	game_state_changed.emit(state)
+
+# Utility state functions
+
+func isPausable() -> bool:
+	return state == GameState.PLAYING
+
+func isPaused() -> bool:
+	return state == GameState.PAUSED

@@ -12,10 +12,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause"): 
-		print('pressed!')
+	handle_pause_input()
+			
+func handle_pause_input() -> void:
+	if not Input.is_action_just_pressed("pause"):
+		return
+			
+	if GameStateManager.isPausable():
 		_show()
+		return
 		
+	if GameStateManager.isPaused():
+		_hide()
+		return
+
+
 func _hide() -> void:
 	self.z_index = -GameConstants.MENU_Z_INDEX
 	self.visible = false
