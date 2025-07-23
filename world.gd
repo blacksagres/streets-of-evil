@@ -14,9 +14,7 @@ extends Node2D
 
 @onready var level_up_menu := $Menus/LevelUpMenu
 
-@onready var fire_rate_boon := $Menus/LevelUpMenu/FireRateBoon
-@onready var damage_boon := $Menus/LevelUpMenu/DamageBoon
-@onready var movement_speed_boon := $Menus/LevelUpMenu/MovementSpeedBoon
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,16 +31,12 @@ func _ready() -> void:
 	
 	# Hidden by default
 	level_up_menu.visible = false
-	#level_up_menu.z_index = 1000
-	
-	fire_rate_boon.process_mode = Node.PROCESS_MODE_ALWAYS
-	damage_boon.process_mode = Node.PROCESS_MODE_ALWAYS
-	movement_speed_boon.process_mode = Node.PROCESS_MODE_ALWAYS
+	level_up_menu.z_index = -GameConstants.MENU_Z_INDEX
 	
 	# Boons callback setup
-	fire_rate_boon.connect("pressed", on_fire_rate_boon_clicked)
-	damage_boon.connect("pressed", on_damage_boon_clicked)
-	movement_speed_boon.connect("pressed", on_movement_speed_boon_clicked)
+	level_up_menu.increased_damage_boon_button.on_click = on_damage_boon_clicked
+	level_up_menu.increased_fire_rate_boon_button.on_click = on_fire_rate_boon_clicked
+	level_up_menu.increased_movement_speed_boon_button.on_click = on_movement_speed_boon_clicked
 	
 	GameStateManager.game_state_changed.connect(_on_game_state_changed)
 
@@ -83,6 +77,7 @@ func on_player_experience_gained(amount: int) -> void:
 	
 func on_player_level_up() -> void:
 	get_tree().paused = true
+	level_up_menu.z_index = GameConstants.MENU_Z_INDEX
 	level_up_menu.visible = true
 
 func on_player_status_increased(_status: Dictionary) -> void:

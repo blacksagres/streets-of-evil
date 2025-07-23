@@ -33,3 +33,4 @@ theme_override_constants/shadow_outline_size = 100
 text = "STREETS OF EVIL"
 
 [node name="NewGameButton" parent="." instance=ExtResource("4_wqopl")]
+position = Vector2(720, 504)

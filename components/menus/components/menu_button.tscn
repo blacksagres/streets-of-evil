@@ -37,10 +37,8 @@ script = ExtResource("1_4pbkt")
 
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0.828694)
-offset_left = 760.0
-offset_top = 472.0
-offset_right = 1272.0
-offset_bottom = 556.0
+offset_right = 512.0
+offset_bottom = 84.0
 theme = SubResource("Theme_mpy17")
 theme_override_fonts/font = ExtResource("2_lqclc")
 theme_override_font_sizes/font_size = 70
