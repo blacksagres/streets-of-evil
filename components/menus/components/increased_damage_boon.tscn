@@ -5,8 +5,4 @@
 [node name="IncreasedDamageBoon" instance=ExtResource("1_48sek")]
 
 [node name="Button" parent="." index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 512.0
-offset_bottom = 84.0
 text = "+ DAMAGE"
