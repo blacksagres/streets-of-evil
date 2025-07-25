@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://csw4bw3qe8a6s"]
+[gd_scene load_steps=9 format=3 uid="uid://csw4bw3qe8a6s"]
 
 [ext_resource type="Script" uid="uid://bkb56i63w1jkw" path="res://characters/enemy.gd" id="1_wa0eo"]
 [ext_resource type="Texture2D" uid="uid://cif13e87256kg" path="res://assets/enemies/zombie-placeholder.png" id="2_ggbst"]
@@ -11,6 +11,10 @@ height = 52.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
 radius = 21.0
+
+[sub_resource type="Curve" id="Curve_toq4n"]
+_data = [Vector2(0.0244755, 1), 0.0, 0.0, 0, 0, Vector2(0.958042, 0.132712), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_wa0eo")
@@ -42,3 +46,17 @@ offset_left = -32.0
 offset_top = -72.0
 offset_right = 32.0
 offset_bottom = -56.0
+
+[node name="BloodSplatter" type="CPUParticles2D" parent="."]
+position = Vector2(0, -26)
+amount = 30
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+angle_max = 187.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_toq4n")
+color = Color(0.541176, 0.0117647, 0.0117647, 1)

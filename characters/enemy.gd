@@ -57,6 +57,8 @@ func on_received_damage(hit_box: Area2D) -> void:
 
 	if hit_box.has_method('destroy_projectile'):
 		hit_box.destroy_projectile()
+		
+	$BloodSplatter.emitting = true
 
 	if healthbar.get_current_health() <= 0:
 		queue_free()
