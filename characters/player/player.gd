@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func handle_shoot_command() -> void:
-	if Input.is_action_just_pressed('shoot'):
+	if Input.is_action_just_pressed('shoot') or Input.is_action_pressed('shoot'):
 		attack()
 	
 func on_status_increase(new_status: Dictionary) -> void:
