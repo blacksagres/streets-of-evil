@@ -49,6 +49,7 @@ offset_bottom = -56.0
 
 [node name="BloodSplatter" type="CPUParticles2D" parent="."]
 position = Vector2(0, -26)
+emitting = false
 amount = 30
 explosiveness = 1.0
 spread = 180.0
