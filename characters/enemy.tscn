@@ -51,6 +51,7 @@ offset_bottom = -56.0
 position = Vector2(0, -26)
 emitting = false
 amount = 30
+one_shot = true
 explosiveness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)

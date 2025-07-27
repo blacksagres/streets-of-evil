@@ -27,8 +27,8 @@ var AnimationDictionary := {
 var current_state : PlayerState
 
 func _ready() -> void:
-	attack_speed.wait_time = status.fire_rate
-	attack_speed.timeout.connect(attack)
+	# attack_speed.wait_time = status.fire_rate
+	# attack_speed.timeout.connect(attack)
 	
 	status.increased_status.connect(on_status_increase)
 	
@@ -38,9 +38,14 @@ func _physics_process(delta: float) -> void:
 	handle_movement_input()
 
 	handle_animation(current_state)
+	handle_shoot_command()
 	
 	# Process movement and execute it in game
 	move_and_slide()
+	
+func handle_shoot_command() -> void:
+	if Input.is_action_just_pressed('shoot'):
+		attack()
 	
 func on_status_increase(new_status: Dictionary) -> void:
 	attack_speed.wait_time = new_status.fire_rate

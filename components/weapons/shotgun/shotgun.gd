@@ -5,15 +5,29 @@ extends Node2D
 const SPEED := 500
 const DAMAGE = 10
 
+const FIRE_RATE = 0.8
+
 @export var shotgun_bullet: PackedScene
 
 @onready var barrel := $Barrel
+@onready var fire_rate_timer :Timer = $FireRateTimer
+
+func _ready() -> void:
+	fire_rate_timer.wait_time = 0.8
+	fire_rate_timer.one_shot = true
+
+## Checks if gun can shoot based on fire rate
+## By default the shotgun has a 0.8s fire rate.
+func can_shoot() ->  bool:
+	return fire_rate_timer.is_stopped()
 
 ## Shoots projectiles from the weapon. 
 ##
 ## [param damage_modifier] a multiplier based on the player's level
 ## [param direction] a Vector2 pointing where to shoot at 
 func shoot(damage_modifier: float, direction: Vector2) -> void:
+	
+	
 	## Single bullet
 	#var handgun_bullet = shotgun_bullet.instantiate() as ShotgunBullet
 	#handgun_bullet.speed = SPEED
@@ -28,7 +42,12 @@ func shoot(damage_modifier: float, direction: Vector2) -> void:
 	
 	## SHOTGUN
 	
-	const MAXIMUM_SPREAD = deg_to_rad(15)
+	if not can_shoot():
+		return
+		
+	fire_rate_timer.start()
+	
+	const MAXIMUM_SPREAD = deg_to_rad(4)
 	const BULLET_COUNT = 3
 	
 	for i in range(BULLET_COUNT):

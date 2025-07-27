@@ -79,10 +79,10 @@ visible = false
 position = Vector2(408, 288)
 
 [node name="ExperienceGauge" type="ProgressBar" parent="."]
-offset_left = 64.0
-offset_top = 56.0
-offset_right = 1920.0
-offset_bottom = 83.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1896.0
+offset_bottom = 67.0
 theme = SubResource("Theme_036b0")
 theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
