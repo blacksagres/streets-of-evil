@@ -98,7 +98,7 @@ shape = SubResource("CapsuleShape2D_6p3mc")
 
 [node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_mask = 0
+collision_mask = 4
 monitoring = false
 script = ExtResource("2_3eadt")
 
