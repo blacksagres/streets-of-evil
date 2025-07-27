@@ -12,7 +12,8 @@ collision_mask = 0
 script = ExtResource("1_kobuc")
 
 [node name="ShotgunBulletSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+position = Vector2(5.96046e-08, 5.96046e-08)
+scale = Vector2(0.3125, 0.3125)
 texture = ExtResource("2_yqerm")
 
 [node name="ShotgunBulletHitbox" type="CollisionShape2D" parent="."]
