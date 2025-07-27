@@ -29,7 +29,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	handle_death(delta)
 	follow_player()
-
+	
 func follow_player() -> void:
 
 	var direction = global_position.direction_to(player.global_position)

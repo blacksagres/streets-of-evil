@@ -2,15 +2,18 @@ class_name Player
 extends CharacterBody2D
 
 @onready var animation_player := $AnimationPlayer
-@onready var character_sprite := $PlayerSprites
+@onready var character_sprite := $PlayerSprite
 
-@onready var laser_sight := $LaserSight
+@onready var laser_sight := $PlayerSprite/LaserSight
 @onready var attack_speed := $AttackSpeedTimer
+@onready var healthbar :Healthbar = $Healthbar
+
+
+@onready var hurtbox := $Hurtbox
+# External dependencies, weapons, equipment, etc
+@onready var shotgun := $PlayerSprite/Shotgun
 
 @export var status: PlayerStatus
-
-# External dependencies, weapons, equipment, etc
-@onready var shotgun := $Shotgun
 
 const JUMP_VELOCITY = -400.0
 
@@ -29,8 +32,9 @@ var current_state : PlayerState
 func _ready() -> void:
 	# attack_speed.wait_time = status.fire_rate
 	# attack_speed.timeout.connect(attack)
-	
+	healthbar.set_initial_health(100)
 	status.increased_status.connect(on_status_increase)
+	hurtbox.area_entered.connect(on_damage_taken)
 	
 
 func _physics_process(delta: float) -> void:
@@ -42,6 +46,12 @@ func _physics_process(delta: float) -> void:
 	
 	# Process movement and execute it in game
 	move_and_slide()
+	
+func on_damage_taken(_area: Area2D) -> void:
+	healthbar.update_current_health(-10)
+	
+	if(healthbar.get_current_health() == 0):
+		GameStateManager.game_over()
 	
 func handle_shoot_command() -> void:
 	if Input.is_action_just_pressed('shoot') or Input.is_action_pressed('shoot'):
@@ -74,6 +84,7 @@ func is_idle() -> void:
 	current_state = PlayerState.IDLE
 
 func flip_sprites() -> void:
+	pass
 	# moving forward
 	if velocity.x > 0:
 		character_sprite.flip_h = true
@@ -96,7 +107,7 @@ func handle_gravity(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 func handle_movement_input() -> void:
-	look_at(get_global_mouse_position())
+	$PlayerSprite.look_at(get_global_mouse_position())
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -106,6 +117,8 @@ func handle_movement_input() -> void:
 
 	if velocity.x == 0:
 		is_idle()
+		
+
 
 # Should I have an animation module?
 

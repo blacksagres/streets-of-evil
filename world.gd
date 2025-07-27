@@ -54,6 +54,12 @@ func _on_game_state_changed(new_state: GameStateManager.GameState) -> void:
 	GameStateManager.GameState.PAUSED, 
 	GameStateManager.GameState.START_MENU
 	].has(new_state)
+	
+	if GameStateManager.isGameOver():
+		# RESET
+		var current_scene = get_tree().current_scene
+		get_tree().reload_current_scene() # Godot 4 built-in
+ 
 
 
 func on_mob_timeout_spawn():
