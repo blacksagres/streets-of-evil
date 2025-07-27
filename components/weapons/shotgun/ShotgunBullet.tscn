@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://sfw7d5nj7kmu"]
 
 [ext_resource type="Script" uid="uid://8qek6iwv2gr1" path="res://components/weapons/shotgun/shotgun_bullet.gd" id="1_kobuc"]
-[ext_resource type="Texture2D" uid="uid://cdxtrhn7qp0t7" path="res://components/weapons/shotgun/assets/shotgun-pellet.png" id="2_yqerm"]
+[ext_resource type="Texture2D" uid="uid://dclbeuo11opmq" path="res://assets/weapons/generic-pellet.png" id="2_yqerm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqerm"]
 radius = 4.0

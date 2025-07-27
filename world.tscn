@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene load_steps=13 format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
@@ -22,6 +22,9 @@ border_color = Color(0.348161, 0.54898, 0.570556, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
 bg_color = Color(9.62615e-08, 0.691082, 0.654206, 1)
+
+[sub_resource type="Environment" id="Environment_pkg7o"]
+glow_enabled = true
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_aqk2v")
@@ -63,6 +66,7 @@ autostart = true
 [node name="Menus" type="Node2D" parent="."]
 
 [node name="LevelUpMenu" parent="Menus" instance=ExtResource("5_pkg7o")]
+visible = false
 position = Vector2(360, 240)
 
 [node name="StartMenu" parent="Menus" instance=ExtResource("5_036b0")]
@@ -94,3 +98,6 @@ offset_top = -8.0
 offset_right = 26.0
 offset_bottom = 15.0
 text = "LEVEL:"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pkg7o")
