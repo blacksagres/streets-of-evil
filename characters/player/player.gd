@@ -77,10 +77,10 @@ func attack() -> void:
 func set_state(new_state: PlayerState) -> void:
 	current_state = new_state
 
-func is_walking() -> void:
+func set_walking_animation() -> void:
 	current_state = PlayerState.WALK
 
-func is_idle() -> void:
+func set_idle_animation() -> void:
 	current_state = PlayerState.IDLE
 
 func flip_sprites() -> void:
@@ -114,12 +114,12 @@ func handle_movement_input() -> void:
 	velocity = direction * status.speed
 	
 	if direction: 
-		is_walking()
+		set_walking_animation()
 
 	flip_sprites()
 
 	if velocity.x == 0:
-		is_idle()
+		set_idle_animation()
 		
 
 
