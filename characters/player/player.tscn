@@ -19,9 +19,11 @@ current_experience = 0
 metadata/_custom_type_script = "uid://lyapngj3dity"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
+radius = 16.0
+height = 62.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dnjla"]
-radius = 21.095
+radius = 32.1403
 
 [sub_resource type="Animation" id="Animation_tory2"]
 length = 0.001
@@ -81,19 +83,22 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idpv6"]
+radius = 24.0
+height = 64.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_dnjla")
 status = SubResource("Resource_c6leb")
 
 [node name="Healthbar" parent="." instance=ExtResource("8_idpv6")]
-offset_left = -104.0
-offset_top = -80.0
-offset_right = 104.0
-offset_bottom = -53.0
+offset_left = -42.0
+offset_top = -88.0
+offset_right = 43.0
+offset_bottom = -77.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(9.53674e-07, -32)
+scale = Vector2(2.625, 2.625)
 texture = ExtResource("2_tory2")
 flip_h = true
 hframes = 3
@@ -116,7 +121,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -31)
 shape = SubResource("CapsuleShape2D_6p3mc")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -126,7 +131,7 @@ monitoring = false
 script = ExtResource("2_3eadt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -21)
+position = Vector2(0, -31)
 shape = SubResource("CircleShape2D_dnjla")
 debug_color = Color(1.15514e-06, 0.637711, 0.388473, 0.42)
 
@@ -146,6 +151,6 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -15)
+position = Vector2(0, -31)
 shape = SubResource("CapsuleShape2D_idpv6")
 debug_color = Color(0.853756, 0.30439, 0.541965, 0.42)
