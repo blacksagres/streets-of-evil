@@ -112,6 +112,9 @@ func handle_movement_input() -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * status.speed
+	
+	if direction: 
+		is_walking()
 
 	flip_sprites()
 
