@@ -94,9 +94,8 @@ script = ExtResource("1_tuy48")
 [node name="DamageDisplayText" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
 offset_left = -40.0
-offset_top = -55.4104
 offset_right = 73.0
-offset_bottom = -21.4104
+offset_bottom = 34.0
 theme_override_colors/font_color = Color(0.917647, 0.901961, 0.854902, 1)
 theme_override_colors/font_shadow_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
 theme_override_colors/font_outline_color = Color(0.147672, 0.147672, 0.147672, 1)

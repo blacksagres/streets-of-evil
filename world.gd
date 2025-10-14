@@ -13,13 +13,15 @@ extends Node2D
 # MENUS
 
 @onready var level_up_menu := $Menus/LevelUpMenu
-
+@onready var healthbar_hud := $Healthbar/AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# WORLD IS PAUSED BY DEFAULT!
 	get_tree().paused = true
+	
+	healthbar_hud.play("condition-status")
 	
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)
 	player.status.gained_experience.connect(on_player_experience_gained)

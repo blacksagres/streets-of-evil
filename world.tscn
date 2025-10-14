@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene load_steps=16 format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dgqbjsucu2qbf" path="res://components/menus/start_menu.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://w7ycrt0ubv8x" path="res://components/menus/level_up_menu.tscn" id="5_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://ku0umq8lpd4n" path="res://components/menus/pause_menu.tscn" id="6_dwbse"]
+[ext_resource type="Texture2D" uid="uid://ba2fnfc4f0fkx" path="res://assets/hud/streets-of-evil-condition-healthy.png" id="8_gbfbk"]
 
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
 _data = {
@@ -23,8 +24,44 @@ border_color = Color(0.348161, 0.54898, 0.570556, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
 bg_color = Color(9.62615e-08, 0.691082, 0.654206, 1)
 
-[sub_resource type="Environment" id="Environment_pkg7o"]
-glow_enabled = true
+[sub_resource type="Animation" id="Animation_gbfbk"]
+resource_name = "condition-status"
+length = 1.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_ioo17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wse8f"]
+_data = {
+&"RESET": SubResource("Animation_ioo17"),
+&"condition-status": SubResource("Animation_gbfbk")
+}
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_aqk2v")
@@ -79,10 +116,10 @@ visible = false
 position = Vector2(408, 288)
 
 [node name="ExperienceGauge" type="ProgressBar" parent="."]
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 1896.0
-offset_bottom = 67.0
+offset_left = 1688.0
+offset_top = 200.0
+offset_right = 1856.0
+offset_bottom = 227.0
 theme = SubResource("Theme_036b0")
 theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
@@ -99,5 +136,16 @@ offset_right = 26.0
 offset_bottom = 15.0
 text = "LEVEL:"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_pkg7o")
+[node name="Healthbar" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Healthbar"]
+libraries = {
+&"": SubResource("AnimationLibrary_wse8f")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Healthbar"]
+position = Vector2(1768, 104)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_gbfbk")
+hframes = 4
+vframes = 3
