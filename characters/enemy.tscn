@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://csw4bw3qe8a6s"]
+[gd_scene format=3 uid="uid://csw4bw3qe8a6s"]
 
 [ext_resource type="Script" uid="uid://bkb56i63w1jkw" path="res://characters/enemy.gd" id="1_wa0eo"]
 [ext_resource type="Texture2D" uid="uid://cif13e87256kg" path="res://assets/enemies/zombie-placeholder.png" id="2_ggbst"]
@@ -10,6 +10,7 @@
 height = 52.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_toq4n"]
+radius = 21.0
 height = 52.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wa0eo"]
@@ -19,47 +20,48 @@ radius = 21.0
 _data = [Vector2(0.0244755, 1), 0.0, 0.0, 0, 0, Vector2(0.958042, 0.132712), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" unique_id=1014974312]
 script = ExtResource("1_wa0eo")
 damage_display = ExtResource("6_u8tuc")
 
-[node name="EnemySprite" type="Sprite2D" parent="."]
+[node name="EnemySprite" type="Sprite2D" parent="." unique_id=2053944854]
 position = Vector2(0, -36)
 texture = ExtResource("2_ggbst")
 flip_h = true
 
-[node name="EnemyCollision" type="CollisionShape2D" parent="."]
+[node name="EnemyCollision" type="CollisionShape2D" parent="." unique_id=1047536303]
 position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_dbwbs")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1934036868]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=657628042]
 position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_toq4n")
 debug_color = Color(0.0682679, 0.60545, 0.381477, 0.419608)
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1777594817]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 3
 monitorable = false
 script = ExtResource("2_nhupr")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=856424372]
+visible = false
 position = Vector2(0, -21)
 shape = SubResource("CircleShape2D_wa0eo")
 debug_color = Color(0.9314, 0.136005, 0.557288, 0.42)
 
-[node name="Healthbar" parent="." instance=ExtResource("3_1ohc2")]
+[node name="Healthbar" parent="." unique_id=1043590158 instance=ExtResource("3_1ohc2")]
 offset_left = -32.0
 offset_top = -72.0
 offset_right = 32.0
 offset_bottom = -56.0
 
-[node name="BloodSplatter" type="CPUParticles2D" parent="."]
+[node name="BloodSplatter" type="CPUParticles2D" parent="." unique_id=1466986378]
 position = Vector2(0, -26)
 emitting = false
 amount = 30
