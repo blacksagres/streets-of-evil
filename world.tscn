@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfm1g0c2lt806"]
+[gd_scene format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
@@ -24,6 +24,21 @@ border_color = Color(0.348161, 0.54898, 0.570556, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
 bg_color = Color(9.62615e-08, 0.691082, 0.654206, 1)
 
+[sub_resource type="Animation" id="Animation_ioo17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_gbfbk"]
 resource_name = "condition-status"
 length = 1.1
@@ -42,40 +57,25 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 
-[sub_resource type="Animation" id="Animation_ioo17"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wse8f"]
 _data = {
 &"RESET": SubResource("Animation_ioo17"),
 &"condition-status": SubResource("Animation_gbfbk")
 }
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="World" type="Node2D" unique_id=524791192 node_paths=PackedStringArray("player")]
 script = ExtResource("1_aqk2v")
 zombie_scene = ExtResource("2_036b0")
 player = NodePath("ActorsContainer/Player")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=1841119740]
 modulate = Color(0.3, 0.3, 0.3, 1)
 z_index = -1
 position = Vector2(960.118, 540.153)
 scale = Vector2(1.77756, 1.77581)
 texture = ExtResource("1_tlwt5")
 
-[node name="SplashText" type="RichTextLabel" parent="."]
+[node name="SplashText" type="RichTextLabel" parent="." unique_id=572723265]
 offset_left = 800.0
 offset_top = 440.0
 offset_right = 1224.0
@@ -83,39 +83,39 @@ offset_bottom = 496.0
 text = "The final stand of the Raccoon City brace officers... 
 Can you make it?"
 
-[node name="ActorsContainer" type="Node2D" parent="."]
+[node name="ActorsContainer" type="Node2D" parent="." unique_id=1693581562]
 
-[node name="Player" parent="ActorsContainer" instance=ExtResource("1_f3sb7")]
+[node name="Player" parent="ActorsContainer" unique_id=1602130041 instance=ExtResource("1_f3sb7")]
 position = Vector2(1008, 568)
 
-[node name="SpawnPath" type="Path2D" parent="."]
+[node name="SpawnPath" type="Path2D" parent="." unique_id=1583250135]
 visible = false
 scale = Vector2(5.66667, 5.66667)
 curve = SubResource("Curve2D_tlwt5")
 
-[node name="SpawnPathLocation" type="PathFollow2D" parent="SpawnPath"]
+[node name="SpawnPathLocation" type="PathFollow2D" parent="SpawnPath" unique_id=266476974]
 position = Vector2(352, 0)
-rotation = 1.5708
+rotation = 1.5707964
 
-[node name="ZombieTimer" type="Timer" parent="."]
+[node name="ZombieTimer" type="Timer" parent="." unique_id=955676249]
 autostart = true
 
-[node name="Menus" type="Node2D" parent="."]
+[node name="Menus" type="Node2D" parent="." unique_id=828609254]
 
-[node name="LevelUpMenu" parent="Menus" instance=ExtResource("5_pkg7o")]
+[node name="LevelUpMenu" parent="Menus" unique_id=1349244723 instance=ExtResource("5_pkg7o")]
 visible = false
 position = Vector2(360, 240)
 
-[node name="StartMenu" parent="Menus" instance=ExtResource("5_036b0")]
+[node name="StartMenu" parent="Menus" unique_id=525297479 instance=ExtResource("5_036b0")]
 process_mode = 2
 visible = false
 
-[node name="PauseMenu" parent="Menus" instance=ExtResource("6_dwbse")]
+[node name="PauseMenu" parent="Menus" unique_id=586240619 instance=ExtResource("6_dwbse")]
 process_mode = 3
 visible = false
 position = Vector2(408, 288)
 
-[node name="ExperienceGauge" type="ProgressBar" parent="."]
+[node name="ExperienceGauge" type="ProgressBar" parent="." unique_id=1935535376]
 offset_left = 1688.0
 offset_top = 200.0
 offset_right = 1856.0
@@ -124,11 +124,11 @@ theme = SubResource("Theme_036b0")
 theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
 
-[node name="Debug" type="Node2D" parent="."]
+[node name="Debug" type="Node2D" parent="." unique_id=360965164]
 visible = false
 position = Vector2(992, 112)
 
-[node name="Label" type="Label" parent="Debug"]
+[node name="Label" type="Label" parent="Debug" unique_id=1766247764]
 visible = false
 offset_left = -24.0
 offset_top = -8.0
@@ -136,14 +136,12 @@ offset_right = 26.0
 offset_bottom = 15.0
 text = "LEVEL:"
 
-[node name="Healthbar" type="Node2D" parent="."]
+[node name="Healthbar" type="Node2D" parent="." unique_id=1497895855]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Healthbar"]
-libraries = {
-&"": SubResource("AnimationLibrary_wse8f")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Healthbar" unique_id=1708757725]
+libraries/ = SubResource("AnimationLibrary_wse8f")
 
-[node name="Sprite2D" type="Sprite2D" parent="Healthbar"]
+[node name="Sprite2D" type="Sprite2D" parent="Healthbar" unique_id=1321478453]
 position = Vector2(1768, 104)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("8_gbfbk")
