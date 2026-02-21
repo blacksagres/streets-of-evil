@@ -6,7 +6,7 @@ class_name PauseMenu
 func _ready() -> void:
 	self.z_index = -GameConstants.MENU_Z_INDEX
 	self.visible = false
-	$ColorRect.color = GameConstants.BLOOD_RED
+	$Background.color = GameConstants.BLOOD_RED
 	$ResumeGameButton.on_click = _on_resume_game_click
 
 

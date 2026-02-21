@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://ku0umq8lpd4n"]
+[gd_scene format=3 uid="uid://ku0umq8lpd4n"]
 
 [ext_resource type="Script" uid="uid://dx2ilu4igovfo" path="res://pause_menu.gd" id="1_r61go"]
 [ext_resource type="FontFile" uid="uid://bm80lk671tqyh" path="res://assets/fonts/Jersey10-Regular.ttf" id="2_u38jr"]
 [ext_resource type="PackedScene" uid="uid://b1c2wocuhgwfo" path="res://components/menus/components/resume_game_button.tscn" id="3_p2qrp"]
 
-[node name="PauseMenu" type="Node2D"]
+[node name="PauseMenu" type="Node2D" unique_id=906735443]
 process_mode = 2
 script = ExtResource("1_r61go")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=547648353]
 offset_right = 1143.0
 offset_bottom = 536.0
 color = Color(0.541176, 0.0117647, 0.0117647, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="PauseLabel" type="Label" parent="." unique_id=1554508974]
 offset_left = 472.0
 offset_top = 32.0
 offset_right = 681.0
@@ -27,5 +27,34 @@ theme_override_fonts/font = ExtResource("2_u38jr")
 theme_override_font_sizes/font_size = 100
 text = "PAUSE"
 
-[node name="ResumeGameButton" parent="." instance=ExtResource("3_p2qrp")]
-position = Vector2(336, 240)
+[node name="ControlsLabel" type="Label" parent="." unique_id=1724400219]
+offset_left = 419.0
+offset_top = 260.0
+offset_right = 751.0
+offset_bottom = 368.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_u38jr")
+theme_override_font_sizes/font_size = 100
+text = "CONTROLS"
+
+[node name="ControlsExplanation" type="Label" parent="." unique_id=1703001320]
+offset_left = 333.0
+offset_top = 359.0
+offset_right = 841.0
+offset_bottom = 494.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_u38jr")
+theme_override_font_sizes/font_size = 60
+text = "Left click: shoot
+WASD (or arrows): move"
+
+[node name="ResumeGameButton" parent="." unique_id=1006308229 instance=ExtResource("3_p2qrp")]
+position = Vector2(320, 163)
