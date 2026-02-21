@@ -15,6 +15,13 @@ extends CharacterBody2D
 
 @export var status: PlayerStatus
 
+# Specific variables
+
+var knockback_velocity = Vector2.ZERO
+var knockback_duration = 0.2 # seconds
+var knockback_timer = 0.0
+var knockback_strength = 400.0
+
 const JUMP_VELOCITY = -400.0
 
 enum PlayerState {
@@ -38,6 +45,25 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if knockback_timer > 0:
+		knockback_timer -= delta
+		# knockback + slowdown with dampening
+		velocity = knockback_velocity
+		
+		# Reset velocity
+		
+		if knockback_timer <= 0:
+			velocity = Vector2.ZERO
+			knockback_velocity = Vector2.ZERO
+			knockback_timer = 0.0
+		
+		# if we're being knocked back, do not register movement
+		move_and_slide()
+		return
+
+	if velocity.length() > 0:
+		velocity = Vector2.ZERO
+	
 	handle_gravity(delta)
 	handle_movement_input()
 
@@ -48,6 +74,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func on_damage_taken(_area: Area2D) -> void:
+	# start knockback for opposite direction 
+	var knockback_direction = global_position.direction_to(_area.global_position) * -1
+	knockback_velocity = knockback_direction * knockback_strength
+	knockback_timer = knockback_duration
+	
 	healthbar.update_current_health(-10)
 	
 	if(healthbar.get_current_health() == 0):
