@@ -63,7 +63,7 @@ func _on_game_state_changed(new_state: GameStateManager.GameState) -> void:
 	if GameStateManager.isGameOver():
 		# RESET
 		var current_scene = get_tree().current_scene
-		get_tree().reload_current_scene() # Godot 4 built-in
+		get_tree().call_deferred("reload_current_scene") # Godot 4 built-in
  
 
 
