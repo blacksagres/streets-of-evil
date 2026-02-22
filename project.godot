@@ -30,6 +30,10 @@ window/size/initial_position_type=0
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdscript-linter/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
