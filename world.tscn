@@ -9,6 +9,18 @@
 [ext_resource type="Script" uid="uid://f675a3w5sfka" path="res://player_health_hud.gd" id="7_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://ba2fnfc4f0fkx" path="res://assets/hud/streets-of-evil-condition-healthy.png" id="8_gbfbk"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbfbk"]
+size = Vector2(1162, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioo17"]
+size = Vector2(31.734009, 638.725)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wse8f"]
+size = Vector2(1156, 37.167908)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic0uy"]
+size = Vector2(42.999054, 655.7703)
+
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 356.20193, 0, 0, 0, 0, 0, 356.82034, 193.8189, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0)
@@ -72,6 +84,37 @@ player = NodePath("ActorsContainer/Player")
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
+
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=578806869]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=1036098220]
+position = Vector2(571, 0)
+shape = SubResource("RectangleShape2D_gbfbk")
+
+[node name="LeftWall" type="StaticBody2D" parent="." unique_id=418481094]
+position = Vector2(-165.73401, 108.55002)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=540664854]
+position = Vector2(165.73401, 220.0875)
+shape = SubResource("RectangleShape2D_ioo17")
+
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=304960547]
+position = Vector2(501.77313, 835.1679)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=1714754562]
+position = Vector2(72.22687, -187.16791)
+shape = SubResource("RectangleShape2D_wse8f")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=767413715]
+position = Vector2(-259.9981, 530.45935)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=9120818]
+position = Vector2(1414.4985, -202.34451)
+shape = SubResource("RectangleShape2D_ic0uy")
 
 [node name="SplashText" type="RichTextLabel" parent="." unique_id=572723265]
 anchors_preset = 8
