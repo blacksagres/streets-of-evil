@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://csw4bw3qe8a6s" path="res://characters/enemy.tscn" id="2_036b0"]
+[ext_resource type="FontFile" uid="uid://bm80lk671tqyh" path="res://assets/fonts/Jersey10-Regular.ttf" id="3_wse8f"]
 [ext_resource type="PackedScene" uid="uid://dgqbjsucu2qbf" path="res://components/menus/start_menu.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://w7ycrt0ubv8x" path="res://components/menus/level_up_menu.tscn" id="5_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://ku0umq8lpd4n" path="res://components/menus/pause_menu.tscn" id="6_dwbse"]
 [ext_resource type="Script" uid="uid://f675a3w5sfka" path="res://player_health_hud.gd" id="7_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://ba2fnfc4f0fkx" path="res://assets/hud/streets-of-evil-condition-healthy.png" id="8_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://ba4h2apxof4eq" path="res://assets/tilesets/scraps_bricks.png" id="9_ioo17"]
+
+[sub_resource type="Theme" id="Theme_ic0uy"]
+default_font = ExtResource("3_wse8f")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbfbk"]
 size = Vector2(1162, 20)
@@ -29,6 +33,7 @@ _data = {
 point_count = 5
 
 [sub_resource type="Theme" id="Theme_036b0"]
+default_font = ExtResource("3_wse8f")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwbse"]
 bg_color = Color(0, 0.262745, 0.6, 0)
@@ -117,6 +122,7 @@ player = NodePath("ActorsContainer/Player")
 [node name="Background" type="ColorRect" parent="." unique_id=18190177]
 offset_right = 1152.0
 offset_bottom = 648.0
+theme = SubResource("Theme_ic0uy")
 color = Color(0, 0, 0, 1)
 
 [node name="TopWall" type="StaticBody2D" parent="." unique_id=578806869]
@@ -202,10 +208,10 @@ visible = false
 position = Vector2(16, -8)
 
 [node name="ExperienceGauge" type="ProgressBar" parent="." unique_id=1935535376]
-offset_left = 988.0
-offset_top = 130.0
-offset_right = 1103.0
-offset_bottom = 153.0
+offset_left = 936.0
+offset_top = 144.0
+offset_right = 1128.0
+offset_bottom = 167.0
 theme = SubResource("Theme_036b0")
 theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
@@ -229,8 +235,8 @@ script = ExtResource("7_gbfbk")
 libraries/ = SubResource("AnimationLibrary_wse8f")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerHealthHUD" unique_id=1321478453]
-position = Vector2(1042.3136, 70.4)
-scale = Vector2(0.46458328, 0.46458328)
+position = Vector2(1028.8334, 80)
+scale = Vector2(0.6666666, 0.6666667)
 texture = ExtResource("8_gbfbk")
 hframes = 4
 vframes = 3
