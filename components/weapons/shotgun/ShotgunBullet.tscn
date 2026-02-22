@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://sfw7d5nj7kmu"]
+
+[ext_resource type="Script" uid="uid://8qek6iwv2gr1" path="res://components/weapons/shotgun/shotgun_bullet.gd" id="1_kobuc"]
+[ext_resource type="Texture2D" uid="uid://dclbeuo11opmq" path="res://assets/weapons/generic-pellet.png" id="2_yqerm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqerm"]
+radius = 4.0
+
+[node name="ShotgunBullet" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_kobuc")
+
+[node name="ShotgunBulletSprite" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, 5.96046e-08)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("2_yqerm")
+
+[node name="ShotgunBulletHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yqerm")

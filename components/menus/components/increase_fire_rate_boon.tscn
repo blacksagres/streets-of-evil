@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://te7g7gve08e5"]
+
+[ext_resource type="PackedScene" uid="uid://dycepdknp5ji1" path="res://components/menus/components/menu_button.tscn" id="1_g3q0s"]
+
+[node name="IncreaseFireRateBoon" instance=ExtResource("1_g3q0s")]
+
+[node name="Button" parent="." index="0"]
+text = "+ FIRE RATE"

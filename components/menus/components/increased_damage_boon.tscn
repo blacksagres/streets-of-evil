@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://o4t55ja4tds3"]
+
+[ext_resource type="PackedScene" uid="uid://dycepdknp5ji1" path="res://components/menus/components/menu_button.tscn" id="1_48sek"]
+
+[node name="IncreasedDamageBoon" instance=ExtResource("1_48sek")]
+
+[node name="Button" parent="." index="0"]
+text = "+ DAMAGE"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cif13e87256kg"
-path="res://.godot/imported/zombie-placeholder.png-3026658858163673b293e6b25cab3778.ctex"
+uid="uid://siv61a4rum45"
+path="res://.godot/imported/raccoon-city-wallpaper.jpg-e22d34a1103f1cdece7604baeabac217.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/zombie-placeholder.png"
-dest_files=["res://.godot/imported/zombie-placeholder.png-3026658858163673b293e6b25cab3778.ctex"]
+source_file="res://assets/raccoon-city-wallpaper.jpg"
+dest_files=["res://.godot/imported/raccoon-city-wallpaper.jpg-e22d34a1103f1cdece7604baeabac217.ctex"]
 
 [params]
 

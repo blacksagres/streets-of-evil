@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cif13e87256kg"
-path="res://.godot/imported/zombie-placeholder.png-3026658858163673b293e6b25cab3778.ctex"
+uid="uid://ba2fnfc4f0fkx"
+path="res://.godot/imported/streets-of-evil-condition-healthy.png-d325c1c90a4f4d8a0ba1060a09b21bd5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/zombie-placeholder.png"
-dest_files=["res://.godot/imported/zombie-placeholder.png-3026658858163673b293e6b25cab3778.ctex"]
+source_file="res://assets/hud/streets-of-evil-condition-healthy.png"
+dest_files=["res://.godot/imported/streets-of-evil-condition-healthy.png-d325c1c90a4f4d8a0ba1060a09b21bd5.ctex"]
 
 [params]
 

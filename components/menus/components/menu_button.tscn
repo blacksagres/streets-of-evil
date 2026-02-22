@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dycepdknp5ji1"]
+
+[ext_resource type="Script" uid="uid://da7w6mqhncgfm" path="res://components/menus/components/menu_button.gd" id="1_4pbkt"]
+[ext_resource type="FontFile" uid="uid://bm80lk671tqyh" path="res://assets/fonts/Jersey10-Regular.ttf" id="2_lqclc"]
+
+[sub_resource type="Theme" id="Theme_mpy17"]
+
+[sub_resource type="Animation" id="Animation_gtdlh"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_mpy17"]
+resource_name = "pulse"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.5), Color(1, 1, 1, 1), Color(1, 1, 1, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqopl"]
+_data = {
+&"RESET": SubResource("Animation_gtdlh"),
+&"pulse": SubResource("Animation_mpy17")
+}
+
+[node name="MenuButton" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_4pbkt")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.828694)
+offset_right = 512.0
+offset_bottom = 84.0
+theme = SubResource("Theme_mpy17")
+theme_override_fonts/font = ExtResource("2_lqclc")
+theme_override_font_sizes/font_size = 70
+text = "NEW GAME"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wqopl")
+}
+autoplay = "pulse"

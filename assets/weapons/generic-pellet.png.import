@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cif13e87256kg"
-path="res://.godot/imported/zombie-placeholder.png-3026658858163673b293e6b25cab3778.ctex"
+uid="uid://dclbeuo11opmq"
+path="res://.godot/imported/generic-pellet.png-640c8e02ab1cc69390afc6c25fc34ac3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/zombie-placeholder.png"
-dest_files=["res://.godot/imported/zombie-placeholder.png-3026658858163673b293e6b25cab3778.ctex"]
+source_file="res://assets/weapons/generic-pellet.png"
+dest_files=["res://.godot/imported/generic-pellet.png-640c8e02ab1cc69390afc6c25fc34ac3.ctex"]
 
 [params]
 
