@@ -36,7 +36,7 @@ var current_state : PlayerState
 func _ready() -> void:
 	# attack_speed.wait_time = status.fire_rate
 	# attack_speed.timeout.connect(attack)
-	healthbar.set_initial_health(100)
+	healthbar.set_initial_health(30)
 	status.increased_status.connect(on_status_increase)
 	hurtbox.area_entered.connect(on_damage_taken)
 	

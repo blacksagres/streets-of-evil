@@ -13,15 +13,14 @@ extends Node2D
 # MENUS
 
 @onready var level_up_menu := $Menus/LevelUpMenu
-@onready var healthbar_hud := $Healthbar/AnimationPlayer
+@onready var healthbar_hud := $ActorsContainer/Player/Healthbar
+@onready var player_health_hud := $PlayerHealthHUD
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# WORLD IS PAUSED BY DEFAULT!
 	get_tree().paused = true
-	
-	healthbar_hud.play("condition-status")
 	
 	zombie_timer.timeout.connect(on_mob_timeout_spawn)
 	player.status.gained_experience.connect(on_player_experience_gained)
@@ -30,6 +29,10 @@ func _ready() -> void:
 	
 	# The actual status increase after leveling up, too granular?
 	player.status.increased_status.connect(on_player_status_increased)
+	
+	# Connect health changes to HUD updates
+	var player_healthbar = player.get_node("Healthbar")
+	player_healthbar.current_health_changed_signal.connect(_on_player_health_changed)
 	
 	# Hidden by default
 	level_up_menu.visible = false
@@ -109,3 +112,12 @@ func on_movement_speed_boon_clicked() -> void:
 	player.status.level_up("speed")
 	get_tree().paused = false
 	level_up_menu.visible = false
+
+func _on_player_health_changed(amount: float) -> void:
+	var player_healthbar = player.get_node("Healthbar")
+	var current_health = player_healthbar.value
+	var max_health = player_healthbar.max_value
+	var health_percentage = current_health / max_health
+	
+	# Update the HUD with the new health percentage
+	player_health_hud.update_health_status(health_percentage)

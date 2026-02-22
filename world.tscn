@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgqbjsucu2qbf" path="res://components/menus/start_menu.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://w7ycrt0ubv8x" path="res://components/menus/level_up_menu.tscn" id="5_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://ku0umq8lpd4n" path="res://components/menus/pause_menu.tscn" id="6_dwbse"]
+[ext_resource type="Script" uid="uid://f675a3w5sfka" path="res://player_health_hud.gd" id="7_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://ba2fnfc4f0fkx" path="res://assets/hud/streets-of-evil-condition-healthy.png" id="8_gbfbk"]
 
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
@@ -140,12 +141,13 @@ offset_right = 26.0
 offset_bottom = 15.0
 text = "LEVEL:"
 
-[node name="Healthbar" type="Node2D" parent="." unique_id=1497895855]
+[node name="PlayerHealthHUD" type="Node2D" parent="." unique_id=1497895855]
+script = ExtResource("7_gbfbk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Healthbar" unique_id=1708757725]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerHealthHUD" unique_id=1708757725]
 libraries/ = SubResource("AnimationLibrary_wse8f")
 
-[node name="Sprite2D" type="Sprite2D" parent="Healthbar" unique_id=1321478453]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerHealthHUD" unique_id=1321478453]
 position = Vector2(1042.3136, 70.4)
 scale = Vector2(0.46458328, 0.46458328)
 texture = ExtResource("8_gbfbk")

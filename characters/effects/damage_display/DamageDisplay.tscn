@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0amu1v20wlc4"]
+[gd_scene format=3 uid="uid://d0amu1v20wlc4"]
 
 [ext_resource type="Script" uid="uid://bl1pdk1gmihmc" path="res://characters/effects/damage_display/damage_display.gd" id="1_tuy48"]
 
@@ -88,10 +88,10 @@ _data = {
 &"display-damage": SubResource("Animation_o1twx")
 }
 
-[node name="DamageDisplay" type="Node2D"]
+[node name="DamageDisplay" type="Node2D" unique_id=2081895604]
 script = ExtResource("1_tuy48")
 
-[node name="DamageDisplayText" type="Label" parent="."]
+[node name="DamageDisplayText" type="Label" parent="." unique_id=897124145]
 modulate = Color(1, 1, 1, 0)
 offset_left = -40.0
 offset_right = 73.0
@@ -102,7 +102,5 @@ theme_override_colors/font_outline_color = Color(0.147672, 0.147672, 0.147672, 1
 theme_override_font_sizes/font_size = 24
 text = "0 damage"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_2mvr2")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=452442737]
+libraries/ = SubResource("AnimationLibrary_2mvr2")
