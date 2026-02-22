@@ -45,10 +45,13 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	# in knockback status
 	if knockback_timer > 0:
 		knockback_timer -= delta
 		# knockback + slowdown with dampening
 		velocity = knockback_velocity
+		
+		character_sprite.modulate = Color(1, 0, 0) # blue shade
 		
 		# Reset velocity
 		
@@ -56,6 +59,8 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 			knockback_velocity = Vector2.ZERO
 			knockback_timer = 0.0
+			character_sprite.modulate = Color(1, 1, 1) # reset to default
+			
 		
 		# if we're being knocked back, do not register movement
 		move_and_slide()
