@@ -17,10 +17,7 @@ extends CharacterBody2D
 
 # Specific variables
 
-var knockback_velocity = Vector2.ZERO
-var knockback_duration = 0.2 # seconds
-var knockback_timer = 0.0
-var knockback_strength = 400.0
+@onready var knockback := $KnockbackComponent
 
 const JUMP_VELOCITY = -400.0
 
@@ -46,25 +43,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# in knockback status
-	if knockback_timer > 0:
-		knockback_timer -= delta
-		# knockback + slowdown with dampening
+	var knockback_velocity = knockback.update(delta)
+	
+	if knockback.is_active:
 		velocity = knockback_velocity
-		
-		character_sprite.modulate = Color(1, 0, 0) # blue shade
-		
-		# Reset velocity
-		
-		if knockback_timer <= 0:
-			velocity = Vector2.ZERO
-			knockback_velocity = Vector2.ZERO
-			knockback_timer = 0.0
-			character_sprite.modulate = Color(1, 1, 1) # reset to default
-			
-		
+		character_sprite.modulate = Color(1, 0, 0)
 		# if we're being knocked back, do not register movement
 		move_and_slide()
 		return
+	else:
+		character_sprite.modulate = Color(1, 1, 1) # reset to default
 
 	if velocity.length() > 0:
 		velocity = Vector2.ZERO
@@ -81,8 +69,7 @@ func _physics_process(delta: float) -> void:
 func on_damage_taken(_area: Area2D) -> void:
 	# start knockback for opposite direction 
 	var knockback_direction = global_position.direction_to(_area.global_position) * -1
-	knockback_velocity = knockback_direction * knockback_strength
-	knockback_timer = knockback_duration
+	knockback.apply_knockback(knockback_direction)
 	
 	healthbar.update_current_health(-10)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cleasu8qoohko"]
+[gd_scene format=3 uid="uid://cleasu8qoohko"]
 
 [ext_resource type="Script" uid="uid://dftsxtkni3gv8" path="res://characters/player/player.gd" id="1_dnjla"]
 [ext_resource type="Script" uid="uid://brny1n4ohpgfh" path="res://characters/hitbox.gd" id="2_3eadt"]
@@ -8,14 +8,10 @@
 [ext_resource type="Script" uid="uid://davfvldraeelq" path="res://characters/attack_speed_timer.gd" id="4_x0jl3"]
 [ext_resource type="Script" uid="uid://diglb6uh3awst" path="res://characters/player/laser_sight.gd" id="7_dirf7"]
 [ext_resource type="PackedScene" uid="uid://ddl14tax45g6q" path="res://components/healthbar.tscn" id="8_idpv6"]
+[ext_resource type="Script" uid="uid://br78y8u5ukrq8" path="res://characters/effects/knockback.gd" id="9_rpf03"]
 
 [sub_resource type="Resource" id="Resource_c6leb"]
 script = ExtResource("2_ixbpm")
-damage_modifier = 1.0
-fire_rate = 0.5
-speed = 100
-level = 1
-current_experience = 0
 metadata/_custom_type_script = "uid://lyapngj3dity"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
@@ -82,17 +78,17 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idpv6"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=698667325]
 script = ExtResource("1_dnjla")
 status = SubResource("Resource_c6leb")
 
-[node name="Healthbar" parent="." instance=ExtResource("8_idpv6")]
+[node name="Healthbar" parent="." unique_id=262010486 instance=ExtResource("8_idpv6")]
 offset_left = -104.0
 offset_top = -80.0
 offset_right = 104.0
 offset_bottom = -53.0
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=276569912]
 position = Vector2(0, -16)
 texture = ExtResource("2_tory2")
 flip_h = true
@@ -100,52 +96,54 @@ hframes = 3
 vframes = 2
 frame = 1
 
-[node name="Shotgun" parent="PlayerSprite" instance=ExtResource("3_c6leb")]
+[node name="Shotgun" parent="PlayerSprite" unique_id=183210898 instance=ExtResource("3_c6leb")]
 position = Vector2(32, 4)
 
-[node name="LaserSight" type="RayCast2D" parent="PlayerSprite"]
+[node name="LaserSight" type="RayCast2D" parent="PlayerSprite" unique_id=1245117095]
 position = Vector2(56, 0)
 target_position = Vector2(136, 0)
 script = ExtResource("7_dirf7")
 
-[node name="LaserLine" type="Line2D" parent="PlayerSprite/LaserSight"]
+[node name="LaserLine" type="Line2D" parent="PlayerSprite/LaserSight" unique_id=1356495151]
 modulate = Color(2, 0, 0, 1)
 points = PackedVector2Array(0, 0, 40, 0, 136, 0)
 width = 2.0
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=660232436]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_6p3mc")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=2146903908]
 unique_name_in_owner = true
 collision_mask = 4
 monitoring = false
 script = ExtResource("2_3eadt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=784385827]
 position = Vector2(0, -21)
 shape = SubResource("CircleShape2D_dnjla")
 debug_color = Color(1.15514e-06, 0.637711, 0.388473, 0.42)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_evndh")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2010790698]
+libraries/ = SubResource("AnimationLibrary_evndh")
+autoplay = &"idle"
 
-[node name="AttackSpeedTimer" type="Timer" parent="."]
+[node name="AttackSpeedTimer" type="Timer" parent="." unique_id=1257354772]
 wait_time = 0.5
 autostart = true
 script = ExtResource("4_x0jl3")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1091880937]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2057749510]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_idpv6")
 debug_color = Color(0.853756, 0.30439, 0.541965, 0.42)
+
+[node name="KnockbackComponent" type="Node" parent="." unique_id=925429927]
+script = ExtResource("9_rpf03")
+metadata/_custom_type_script = "uid://br78y8u5ukrq8"
