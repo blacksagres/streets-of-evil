@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgqbjsucu2qbf"]
+[gd_scene format=3 uid="uid://dgqbjsucu2qbf"]
 
-[ext_resource type="Texture2D" uid="uid://dl5pmj3xjvpde" path="res://assets/pixel-art-street-test.jpg" id="1_mpy17"]
 [ext_resource type="Script" uid="uid://cgoha77r340y3" path="res://components/menus/start_menu.gd" id="1_wqopl"]
 [ext_resource type="FontFile" uid="uid://bm80lk671tqyh" path="res://assets/fonts/Jersey10-Regular.ttf" id="2_gtdlh"]
 [ext_resource type="PackedScene" uid="uid://coocens6no01y" path="res://components/menus/components/new_game_button.tscn" id="4_wqopl"]
@@ -9,28 +8,28 @@
 default_font = ExtResource("2_gtdlh")
 default_font_size = 250
 
-[node name="StartMenu" type="Node2D"]
+[node name="StartMenu" type="Node2D" unique_id=323079582]
 z_index = 10
 script = ExtResource("1_wqopl")
 
-[node name="Background" type="Sprite2D" parent="."]
-modulate = Color(0.12549, 0, 0.0313726, 1)
-position = Vector2(962.875, 542)
-scale = Vector2(1.77245, 1.78289)
-texture = ExtResource("1_mpy17")
+[node name="Background" type="ColorRect" parent="." unique_id=45602608]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
 
-[node name="Title" type="RichTextLabel" parent="."]
-offset_left = 288.0
-offset_top = 112.0
-offset_right = 1656.0
-offset_bottom = 504.0
+[node name="Title" type="RichTextLabel" parent="." unique_id=443356158]
+offset_left = 251.0
+offset_top = 78.0
+offset_right = 1639.0
+offset_bottom = 376.0
+scale = Vector2(0.5, 0.5)
 theme = SubResource("Theme_dwbse")
 theme_override_colors/default_color = Color(0.926299, 2.4306e-06, 1.92523e-06, 1)
 theme_override_colors/font_outline_color = Color(0.20871, 0.20871, 0.20871, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 15
 theme_override_constants/shadow_outline_size = 100
+theme_override_constants/outline_size = 15
 text = "STREETS OF EVIL"
 
-[node name="NewGameButton" parent="." instance=ExtResource("4_wqopl")]
-position = Vector2(720, 504)
+[node name="NewGameButton" parent="." unique_id=1880757393 instance=ExtResource("4_wqopl")]
+position = Vector2(343, 294)

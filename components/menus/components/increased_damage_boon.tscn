@@ -4,8 +4,5 @@
 
 [node name="IncreasedDamageBoon" unique_id=1551392892 instance=ExtResource("1_48sek")]
 
-[node name="Button" parent="." index="0"]
+[node name="Button" parent="." index="0" unique_id=1445832919]
 text = "+ DAMAGE"
-
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = &"pulse"

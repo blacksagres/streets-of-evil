@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dycepdknp5ji1"]
+[gd_scene format=3 uid="uid://dycepdknp5ji1"]
 
 [ext_resource type="Script" uid="uid://da7w6mqhncgfm" path="res://components/menus/components/menu_button.gd" id="1_4pbkt"]
 [ext_resource type="FontFile" uid="uid://bm80lk671tqyh" path="res://assets/fonts/Jersey10-Regular.ttf" id="2_lqclc"]
@@ -31,21 +31,20 @@ _data = {
 &"pulse": SubResource("Animation_mpy17")
 }
 
-[node name="MenuButton" type="Node2D"]
+[node name="MenuButton" type="Node2D" unique_id=1207673619]
 process_mode = 3
 script = ExtResource("1_4pbkt")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1445832919]
 modulate = Color(1, 1, 1, 0.828694)
-offset_right = 512.0
+offset_right = 504.0
 offset_bottom = 84.0
+scale = Vector2(0.5, 0.5)
 theme = SubResource("Theme_mpy17")
 theme_override_fonts/font = ExtResource("2_lqclc")
 theme_override_font_sizes/font_size = 70
 text = "NEW GAME"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_wqopl")
-}
-autoplay = "pulse"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2112536389]
+libraries/ = SubResource("AnimationLibrary_wqopl")
+autoplay = &"pulse"
