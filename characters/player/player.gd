@@ -47,12 +47,9 @@ func _physics_process(delta: float) -> void:
 	
 	if knockback.is_active:
 		velocity = knockback_velocity
-		character_sprite.modulate = Color(1, 0, 0)
 		# if we're being knocked back, do not register movement
 		move_and_slide()
 		return
-	else:
-		character_sprite.modulate = Color(1, 1, 1) # reset to default
 
 	if velocity.length() > 0:
 		velocity = Vector2.ZERO
@@ -70,6 +67,15 @@ func on_damage_taken(_area: Area2D) -> void:
 	# start knockback for opposite direction 
 	var knockback_direction = global_position.direction_to(_area.global_position) * -1
 	knockback.apply_knockback(knockback_direction)
+	
+	# Damage blink animation
+	var damage_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	# Flash red and fade out quickly
+	damage_tween.parallel().tween_property(character_sprite, "modulate", Color.RED, 0.1)
+	damage_tween.parallel().tween_property(character_sprite, "modulate:a", 0.5, 0.1)
+	# Return to normal color and full opacity
+	damage_tween.tween_property(character_sprite, "modulate", Color.WHITE, 0.3)
+	damage_tween.tween_property(character_sprite, "modulate:a", 1.0, 0.3)
 	
 	healthbar.update_current_health(-10)
 	
