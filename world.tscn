@@ -10,7 +10,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 352, 0, 0, 0, 0, 0, 359.2939, 194.11754, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 356.20193, 0, 0, 0, 0, 0, 356.82034, 193.8189, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0)
 }
 point_count = 5
 
@@ -73,25 +73,33 @@ offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
 [node name="SplashText" type="RichTextLabel" parent="." unique_id=572723265]
-offset_left = 406.0
-offset_top = 285.0
-offset_right = 830.0
-offset_bottom = 341.0
-text = "The final stand of the Raccoon City brace officers... 
-Can you make it?"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 488.0
+offset_top = 248.0
+offset_right = 669.0
+offset_bottom = 332.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A lot of evil residents
+in these streets...
+Can you survive?"
 
 [node name="ActorsContainer" type="Node2D" parent="." unique_id=1693581562]
 
 [node name="Player" parent="ActorsContainer" unique_id=1602130041 instance=ExtResource("1_f3sb7")]
-position = Vector2(605, 444)
+position = Vector2(560, 416)
 
 [node name="SpawnPath" type="Path2D" parent="." unique_id=1583250135]
 scale = Vector2(3.2341208, 3.3484867)
 curve = SubResource("Curve2D_tlwt5")
 
 [node name="SpawnPathLocation" type="PathFollow2D" parent="SpawnPath" unique_id=266476974]
-position = Vector2(352, 0)
-rotation = 1.5332392
+position = Vector2(356.20193, 0)
+rotation = 1.5676057
 
 [node name="ZombieTimer" type="Timer" parent="." unique_id=955676249]
 autostart = true
@@ -112,10 +120,10 @@ visible = false
 position = Vector2(408, 288)
 
 [node name="ExperienceGauge" type="ProgressBar" parent="." unique_id=1935535376]
-offset_left = 929.0
-offset_top = 181.0
-offset_right = 1097.0
-offset_bottom = 208.0
+offset_left = 988.0
+offset_top = 130.0
+offset_right = 1103.0
+offset_bottom = 153.0
 theme = SubResource("Theme_036b0")
 theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
@@ -138,8 +146,8 @@ text = "LEVEL:"
 libraries/ = SubResource("AnimationLibrary_wse8f")
 
 [node name="Sprite2D" type="Sprite2D" parent="Healthbar" unique_id=1321478453]
-position = Vector2(1005.00006, 93.00001)
-scale = Vector2(0.7, 0.7)
+position = Vector2(1042.3136, 70.4)
+scale = Vector2(0.46458328, 0.46458328)
 texture = ExtResource("8_gbfbk")
 hframes = 4
 vframes = 3
