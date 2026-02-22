@@ -185,7 +185,7 @@ autostart = true
 
 [node name="LevelUpMenu" parent="Menus" unique_id=1349244723 instance=ExtResource("5_pkg7o")]
 visible = false
-position = Vector2(360, 240)
+position = Vector2(8, 64)
 
 [node name="StartMenu" parent="Menus" unique_id=525297479 instance=ExtResource("5_036b0")]
 process_mode = 2
@@ -194,7 +194,7 @@ visible = false
 [node name="PauseMenu" parent="Menus" unique_id=586240619 instance=ExtResource("6_dwbse")]
 process_mode = 3
 visible = false
-position = Vector2(408, 288)
+position = Vector2(16, -8)
 
 [node name="ExperienceGauge" type="ProgressBar" parent="." unique_id=1935535376]
 offset_left = 988.0
