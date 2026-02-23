@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/blacksagres/streets-of-evil/compare/v1.1.0...v1.2.0) (2026-02-23)
+
+
+### Features
+
+* big world change ([4af0a77](https://github.com/blacksagres/streets-of-evil/commit/4af0a7776ec8eb3adda1d7c07e5928eb59f98c54))
+
+
+### Bug Fixes
+
+* add more walls to patch the gap in the bottom of the screen ([dc0d346](https://github.com/blacksagres/streets-of-evil/commit/dc0d346571313129b2ce412330f20b784e1b2d69))
+* truly randomize spawn point from zombies ([539054f](https://github.com/blacksagres/streets-of-evil/commit/539054fe10d669713a44a1f7b536a80b8351fa2d))
+
 ## [1.1.0](https://github.com/blacksagres/streets-of-evil/compare/v1.0.0...v1.1.0) (2026-02-22)
 
 
