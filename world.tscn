@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cfm1g0c2lt806"]
+[gd_scene format=3 uid="uid://cfm1g0c2lt806"]
 
 [ext_resource type="Script" uid="uid://dlbrtbpmsfujf" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://cleasu8qoohko" path="res://characters/player/player.tscn" id="1_f3sb7"]
@@ -9,38 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://ku0umq8lpd4n" path="res://components/menus/pause_menu.tscn" id="6_dwbse"]
 [ext_resource type="Script" uid="uid://f675a3w5sfka" path="res://player_health_hud.gd" id="7_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://ba2fnfc4f0fkx" path="res://assets/hud/streets-of-evil-condition-healthy.png" id="8_gbfbk"]
-[ext_resource type="Texture2D" uid="uid://ba4h2apxof4eq" path="res://assets/tilesets/scraps_bricks.png" id="9_ioo17"]
-
-[sub_resource type="Theme" id="Theme_ic0uy"]
-default_font = ExtResource("3_wse8f")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbfbk"]
-size = Vector2(1162, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioo17"]
-size = Vector2(42.132996, 638.725)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wse8f"]
-size = Vector2(1156, 37.167908)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic0uy"]
-size = Vector2(42.999054, 655.7703)
 
 [sub_resource type="Curve2D" id="Curve2D_tlwt5"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 356.20193, 0, 0, 0, 0, 0, 356.82034, 193.8189, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 352, 0)
 }
 point_count = 5
-
-[sub_resource type="Theme" id="Theme_036b0"]
-default_font = ExtResource("3_wse8f")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwbse"]
-bg_color = Color(0, 0.262745, 0.6, 0)
-border_color = Color(0.348161, 0.54898, 0.570556, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
-bg_color = Color(9.62615e-08, 0.691082, 0.654206, 1)
 
 [sub_resource type="Animation" id="Animation_ioo17"]
 length = 0.001
@@ -81,83 +55,68 @@ _data = {
 &"condition-status": SubResource("Animation_gbfbk")
 }
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wse8f"]
-texture = ExtResource("9_ioo17")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-15:0/0 = 0
-16:0/0 = 0
-17:0/0 = 0
-18:0/0 = 0
-19:0/0 = 0
-20:0/0 = 0
-21:0/0 = 0
-22:0/0 = 0
-23:0/0 = 0
-24:0/0 = 0
-25:0/0 = 0
-26:0/0 = 0
+[sub_resource type="Theme" id="Theme_036b0"]
+default_font = ExtResource("3_wse8f")
 
-[sub_resource type="TileSet" id="TileSet_ic0uy"]
-sources/0 = SubResource("TileSetAtlasSource_wse8f")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwbse"]
+bg_color = Color(0, 0.262745, 0.6, 0)
+border_color = Color(0.348161, 0.54898, 0.570556, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
+bg_color = Color(9.62615e-08, 0.691082, 0.654206, 1)
 
 [node name="World" type="Node2D" unique_id=524791192 node_paths=PackedStringArray("player")]
 script = ExtResource("1_aqk2v")
 zombie_scene = ExtResource("2_036b0")
-player = NodePath("ActorsContainer/Player")
+player = NodePath("PlayerContainer/Player")
 
-[node name="Background" type="ColorRect" parent="." unique_id=18190177]
-offset_right = 1152.0
-offset_bottom = 648.0
-theme = SubResource("Theme_ic0uy")
+[node name="ZombieTimer" type="Timer" parent="." unique_id=955676249]
+autostart = true
+
+[node name="PlayerContainer" type="Node2D" parent="." unique_id=1693581562]
+
+[node name="Player" parent="PlayerContainer" unique_id=1602130041 instance=ExtResource("1_f3sb7")]
+position = Vector2(576, 336)
+
+[node name="SpawnPath" type="Path2D" parent="PlayerContainer" unique_id=1583250135]
+scale = Vector2(3.2341208, 3.3484867)
+curve = SubResource("Curve2D_tlwt5")
+
+[node name="SpawnPathLocation" type="PathFollow2D" parent="PlayerContainer/SpawnPath" unique_id=266476974]
+position = Vector2(356.20193, 0)
+rotation = 1.5676057
+
+[node name="GameMainCanvas" type="CanvasLayer" parent="." unique_id=876328899]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="GameMainCanvas" unique_id=717181012]
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 1168.0
+offset_bottom = 680.0
 color = Color(0, 0, 0, 1)
 
-[node name="TopWall" type="StaticBody2D" parent="." unique_id=578806869]
-visible = false
-collision_layer = 8
+[node name="PlayerHealthHUD" type="Node2D" parent="GameMainCanvas" unique_id=1497895855]
+script = ExtResource("7_gbfbk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=1036098220]
-position = Vector2(571, 0)
-shape = SubResource("RectangleShape2D_gbfbk")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameMainCanvas/PlayerHealthHUD" unique_id=1708757725]
+libraries/ = SubResource("AnimationLibrary_wse8f")
 
-[node name="LeftWall" type="StaticBody2D" parent="." unique_id=418481094]
-visible = false
-position = Vector2(0, 320)
-collision_layer = 8
+[node name="Sprite2D" type="Sprite2D" parent="GameMainCanvas/PlayerHealthHUD" unique_id=1321478453]
+position = Vector2(1028.8334, 80)
+scale = Vector2(0.6666666, 0.6666667)
+texture = ExtResource("8_gbfbk")
+hframes = 4
+vframes = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=540664854]
-shape = SubResource("RectangleShape2D_ioo17")
-
-[node name="BottomWall" type="StaticBody2D" parent="." unique_id=304960547]
-visible = false
-position = Vector2(576, 640)
-collision_layer = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=1714754562]
-position = Vector2(-16, 0)
-shape = SubResource("RectangleShape2D_wse8f")
-
-[node name="RightWall" type="StaticBody2D" parent="." unique_id=767413715]
-visible = false
-position = Vector2(1152, 272)
-collision_layer = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=9120818]
-position = Vector2(6.1035156e-05, 48)
-shape = SubResource("RectangleShape2D_ic0uy")
+[node name="ExperienceGauge" type="ProgressBar" parent="GameMainCanvas" unique_id=1935535376]
+offset_left = 936.0
+offset_top = 144.0
+offset_right = 1128.0
+offset_bottom = 167.0
+theme = SubResource("Theme_036b0")
+theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
 
 [node name="SplashText" type="RichTextLabel" parent="." unique_id=572723265]
 visible = false
@@ -176,46 +135,6 @@ text = "A lot of evil residents
 in these streets...
 Can you survive?"
 
-[node name="ActorsContainer" type="Node2D" parent="." unique_id=1693581562]
-
-[node name="Player" parent="ActorsContainer" unique_id=1602130041 instance=ExtResource("1_f3sb7")]
-position = Vector2(560, 416)
-
-[node name="SpawnPath" type="Path2D" parent="." unique_id=1583250135]
-scale = Vector2(3.2341208, 3.3484867)
-curve = SubResource("Curve2D_tlwt5")
-
-[node name="SpawnPathLocation" type="PathFollow2D" parent="SpawnPath" unique_id=266476974]
-position = Vector2(356.20193, 0)
-rotation = 1.5676057
-
-[node name="ZombieTimer" type="Timer" parent="." unique_id=955676249]
-autostart = true
-
-[node name="Menus" type="Node2D" parent="." unique_id=828609254]
-
-[node name="LevelUpMenu" parent="Menus" unique_id=1349244723 instance=ExtResource("5_pkg7o")]
-visible = false
-position = Vector2(8, 64)
-
-[node name="StartMenu" parent="Menus" unique_id=525297479 instance=ExtResource("5_036b0")]
-process_mode = 2
-visible = false
-
-[node name="PauseMenu" parent="Menus" unique_id=586240619 instance=ExtResource("6_dwbse")]
-process_mode = 3
-visible = false
-position = Vector2(16, -8)
-
-[node name="ExperienceGauge" type="ProgressBar" parent="." unique_id=1935535376]
-offset_left = 936.0
-offset_top = 144.0
-offset_right = 1128.0
-offset_bottom = 167.0
-theme = SubResource("Theme_036b0")
-theme_override_styles/background = SubResource("StyleBoxFlat_dwbse")
-theme_override_styles/fill = SubResource("StyleBoxFlat_pkg7o")
-
 [node name="Debug" type="Node2D" parent="." unique_id=360965164]
 visible = false
 position = Vector2(992, 112)
@@ -228,20 +147,17 @@ offset_right = 26.0
 offset_bottom = 15.0
 text = "LEVEL:"
 
-[node name="PlayerHealthHUD" type="Node2D" parent="." unique_id=1497895855]
-script = ExtResource("7_gbfbk")
+[node name="MenusCanvas" type="CanvasLayer" parent="." unique_id=1854762835]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerHealthHUD" unique_id=1708757725]
-libraries/ = SubResource("AnimationLibrary_wse8f")
+[node name="StartMenu" parent="MenusCanvas" unique_id=525297479 instance=ExtResource("5_036b0")]
+process_mode = 2
+visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerHealthHUD" unique_id=1321478453]
-position = Vector2(1028.8334, 80)
-scale = Vector2(0.6666666, 0.6666667)
-texture = ExtResource("8_gbfbk")
-hframes = 4
-vframes = 3
+[node name="LevelUpMenu" parent="MenusCanvas" unique_id=1349244723 instance=ExtResource("5_pkg7o")]
+visible = false
+position = Vector2(8, 64)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=314648977]
-position = Vector2(-2, 0)
-tile_map_data = PackedByteArray("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")
-tile_set = SubResource("TileSet_ic0uy")
+[node name="PauseMenu" parent="MenusCanvas" unique_id=586240619 instance=ExtResource("6_dwbse")]
+process_mode = 3
+visible = false
+position = Vector2(16, -8)

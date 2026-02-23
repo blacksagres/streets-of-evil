@@ -8,13 +8,13 @@ extends Node2D
 # The message in the center of the screen
 @onready var splash_text := $SplashText
 @onready var debug_label := $Debug/Label
-@onready var experience_gauge := $ExperienceGauge
+@onready var experience_gauge := $GameMainCanvas/ExperienceGauge
 
 # MENUS
 
-@onready var level_up_menu := $Menus/LevelUpMenu
+@onready var level_up_menu := $MenusCanvas/LevelUpMenu
 @onready var healthbar_hud := $ActorsContainer/Player/Healthbar
-@onready var player_health_hud := $PlayerHealthHUD
+@onready var player_health_hud := $GameMainCanvas/PlayerHealthHUD
 
 
 # Called when the node enters the scene tree for the first time.
@@ -73,7 +73,7 @@ func on_mob_timeout_spawn():
 	
 	mob.connect('on_death_signal', player.status.increase_experience)
 	
-	var mob_spawn_location = $SpawnPath/SpawnPathLocation
+	var mob_spawn_location = $PlayerContainer/SpawnPath/SpawnPathLocation
 	# Choose a random location on Path2D.
 	mob_spawn_location.progress_ratio =  randf()
 	

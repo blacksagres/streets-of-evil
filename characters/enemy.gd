@@ -14,7 +14,7 @@ signal on_death_signal(experience_gained: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player = get_node("/root/World/ActorsContainer/Player")
+	player = get_node("/root/World/PlayerContainer/Player")
 	hurtbox.hit_taken_signal.connect(on_received_damage)
 	
 	healthbar.set_initial_health(40)

@@ -19,6 +19,8 @@ metadata/_custom_type_script = "uid://lyapngj3dity"
 [sub_resource type="CircleShape2D" id="CircleShape2D_dnjla"]
 radius = 21.095
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idpv6"]
+
 [sub_resource type="Animation" id="Animation_tory2"]
 length = 0.001
 tracks/0/type = "value"
@@ -76,8 +78,6 @@ _data = {
 &"walk": SubResource("Animation_evndh")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idpv6"]
-
 [node name="Player" type="CharacterBody2D" unique_id=698667325]
 collision_mask = 9
 script = ExtResource("1_dnjla")
@@ -127,15 +127,6 @@ position = Vector2(0, -21)
 shape = SubResource("CircleShape2D_dnjla")
 debug_color = Color(1.15514e-06, 0.637711, 0.388473, 0.42)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2010790698]
-libraries/ = SubResource("AnimationLibrary_evndh")
-autoplay = &"idle"
-
-[node name="AttackSpeedTimer" type="Timer" parent="." unique_id=1257354772]
-wait_time = 0.5
-autostart = true
-script = ExtResource("4_x0jl3")
-
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1091880937]
 collision_layer = 0
 collision_mask = 4
@@ -145,6 +136,18 @@ position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_idpv6")
 debug_color = Color(0.853756, 0.30439, 0.541965, 0.42)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2010790698]
+libraries/ = SubResource("AnimationLibrary_evndh")
+autoplay = &"idle"
+
+[node name="AttackSpeedTimer" type="Timer" parent="." unique_id=1257354772]
+wait_time = 0.5
+autostart = true
+script = ExtResource("4_x0jl3")
+
 [node name="KnockbackComponent" type="Node" parent="." unique_id=925429927]
 script = ExtResource("9_rpf03")
 metadata/_custom_type_script = "uid://br78y8u5ukrq8"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1283019580]
+position = Vector2(0, -15)
