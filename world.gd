@@ -72,13 +72,13 @@ func on_mob_timeout_spawn():
 	var mob = zombie_scene.instantiate()
 	
 	mob.connect('on_death_signal', player.status.increase_experience)
-
-	# Choose a random location on Path2D.
+	
 	var mob_spawn_location = $SpawnPath/SpawnPathLocation
-	mob_spawn_location.progress_ratio = randf() 
-	print({ "rand": mob_spawn_location.progress_ratio })
+	# Choose a random location on Path2D.
+	mob_spawn_location.progress_ratio =  randf()
+	
 	# Set the mob's position to the random location.
-	mob.position = mob_spawn_location.position
+	mob.global_position =mob_spawn_location.global_position
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)

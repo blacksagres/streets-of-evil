@@ -28,7 +28,7 @@ func increase_experience(experience_amount: int) -> void:
 func level_up(parameter: String) -> void:
 	match parameter:
 		"damage_modifier": damage_modifier += 0.5
-		"fire_rate": fire_rate  *= 0.85
+		"fire_rate": fire_rate  *= 2
 		"move_speed": speed *= 1.15
 		_:
 			push_error("Unknown parameter: " + parameter)
