@@ -125,6 +125,9 @@ func flip_sprites() -> void:
 		animated_sprite.flip_h = false
 		#damage_emitter.scale.x = -1
 
+# Direction threshold for determining dominant movement axis
+const DIRECTION_THRESHOLD = 0.3
+
 # PHYSICS
 
 func handle_movement_input() -> void:
@@ -137,11 +140,11 @@ func handle_movement_input() -> void:
 	var last_non_zero_velocity = Vector2.RIGHT
 
 	if velocity.length() > 0:
-		if abs(velocity.x) > abs(velocity.y):
+		if abs(velocity.x) > abs(velocity.y) + DIRECTION_THRESHOLD:
 			# horizontal moviment priority
 			set_state(PlayerState.WALK_SIDE)
 			animated_sprite.flip_h = velocity.x < 0
-		else:
+		elif abs(velocity.y) > abs(velocity.x) + DIRECTION_THRESHOLD:
 			# vertical movement priority
 			if velocity.y < 0: 
 				set_state(PlayerState.WALK_UP)
