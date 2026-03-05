@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/blacksagres/streets-of-evil/compare/v1.1.0...v1.2.0) (2026-03-05)
+
+
+### Features
+
+* add new character sprite and animations ([c25e550](https://github.com/blacksagres/streets-of-evil/commit/c25e550d974d34a95e78b08268c70e5258a9642b))
+* add small threshold to not make moviment too quick ([4d57889](https://github.com/blacksagres/streets-of-evil/commit/4d5788923c4ccaa323a9e486f4798c8c93db64fc))
+* big world change ([4af0a77](https://github.com/blacksagres/streets-of-evil/commit/4af0a7776ec8eb3adda1d7c07e5928eb59f98c54))
+
+
+### Bug Fixes
+
+* add more walls to patch the gap in the bottom of the screen ([dc0d346](https://github.com/blacksagres/streets-of-evil/commit/dc0d346571313129b2ce412330f20b784e1b2d69))
+* character movement sprite animation now works ([ed6d1f0](https://github.com/blacksagres/streets-of-evil/commit/ed6d1f0add59b8f5a6bc36a0cfea903048be649b))
+* prevent playing sprite from rotating ([8121e45](https://github.com/blacksagres/streets-of-evil/commit/8121e4539ed3a2f566c496d9dce1dded6e00ee01))
+* restore monster spawn ([670ef27](https://github.com/blacksagres/streets-of-evil/commit/670ef2783e5d78856ab51441582bcd31083e8377))
+* truly randomize spawn point from zombies ([539054f](https://github.com/blacksagres/streets-of-evil/commit/539054fe10d669713a44a1f7b536a80b8351fa2d))
+
 ## [1.1.0](https://github.com/blacksagres/streets-of-evil/compare/v1.0.0...v1.1.0) (2026-02-22)
 
 
