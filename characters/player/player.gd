@@ -135,30 +135,27 @@ func handle_movement_input() -> void:
 	velocity = direction * status.speed
 	var last_non_zero_velocity = Vector2.RIGHT
 
-	if velocity.length() == 0:
+	if velocity.length() > 0:
+		if abs(velocity.x) > abs(velocity.y):
+			# horizontal moviment priority
+			set_state(PlayerState.WALK_SIDE)
+			animated_sprite.flip_h = velocity.x < 0
+		else:
+			# vertical movement priority
+			if velocity.y < 0: 
+				set_state(PlayerState.WALK_UP)
+			else:
+				set_state(PlayerState.WALK_DOWN)
+		# for the idleness
+		last_non_zero_velocity = velocity
 
+	else:
 		if last_non_zero_velocity.y < 0:
 			set_state(PlayerState.IDLE_DOWN)
 		elif last_non_zero_velocity.y > 0:
 			set_state(PlayerState.IDLE_UP)
 		else:
 			set_state(PlayerState.IDLE_SIDE)
-
-	else:
-		
-		if velocity.y < 0:
-			set_state(PlayerState.WALK_UP)
-		elif velocity.y >= 0:
-			set_state(PlayerState.WALK_DOWN)
-		elif velocity.x < 0:
-			animated_sprite.flip_h = true
-			set_state(PlayerState.WALK_SIDE)
-		elif velocity.x > 0:
-			set_state(PlayerState.WALK_SIDE)
-			animated_sprite.flip_h = false		
-
-	if velocity.length() > 0:
-		last_non_zero_velocity = velocity
 
 
 # Should I have an animation module?
