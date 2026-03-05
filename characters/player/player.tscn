@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dftsxtkni3gv8" path="res://characters/player/player.gd" id="1_dnjla"]
 [ext_resource type="Script" uid="uid://brny1n4ohpgfh" path="res://characters/hitbox.gd" id="2_3eadt"]
 [ext_resource type="Script" uid="uid://lyapngj3dity" path="res://characters/player/player_status.gd" id="2_ixbpm"]
-[ext_resource type="Texture2D" uid="uid://7o3rjys2pew7" path="res://assets/scotty-frames.png" id="2_tory2"]
 [ext_resource type="PackedScene" uid="uid://c7uqq6xixufdi" path="res://components/weapons/shotgun/Shotgun.tscn" id="3_c6leb"]
+[ext_resource type="Texture2D" uid="uid://d0lxmhiq84fmo" path="res://assets/characters/streets-of-evil-character.png" id="4_rpf03"]
 [ext_resource type="Script" uid="uid://davfvldraeelq" path="res://characters/attack_speed_timer.gd" id="4_x0jl3"]
 [ext_resource type="Script" uid="uid://diglb6uh3awst" path="res://characters/player/laser_sight.gd" id="7_dirf7"]
 [ext_resource type="PackedScene" uid="uid://ddl14tax45g6q" path="res://components/healthbar.tscn" id="8_idpv6"]
@@ -14,69 +14,108 @@
 script = ExtResource("2_ixbpm")
 metadata/_custom_type_script = "uid://lyapngj3dity"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqopd"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icpky"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l73k"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58jvb"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqrcq"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpf03"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5dtk"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t07l"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on558"]
+atlas = ExtResource("4_rpf03")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_on558"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqopd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icpky")
+}],
+"loop": true,
+"name": &"down-walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l73k")
+}],
+"loop": true,
+"name": &"idle-down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58jvb")
+}],
+"loop": true,
+"name": &"idle-side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqrcq")
+}],
+"loop": true,
+"name": &"idle-up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpf03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5dtk")
+}],
+"loop": true,
+"name": &"side-walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t07l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on558")
+}],
+"loop": true,
+"name": &"up-walk",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p3mc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dnjla"]
 radius = 21.095
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idpv6"]
-
-[sub_resource type="Animation" id="Animation_tory2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_x0jl3"]
-resource_name = "idle"
-length = 0.2
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_evndh"]
-resource_name = "walk"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [3, 4, 5]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_evndh"]
-_data = {
-&"RESET": SubResource("Animation_tory2"),
-&"idle": SubResource("Animation_x0jl3"),
-&"walk": SubResource("Animation_evndh")
-}
 
 [node name="Player" type="CharacterBody2D" unique_id=698667325]
 collision_mask = 9
@@ -89,23 +128,20 @@ offset_top = -46.0
 offset_right = 31.0
 offset_bottom = -41.0
 
-[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=276569912]
-position = Vector2(0, -16)
-texture = ExtResource("2_tory2")
-flip_h = true
-hframes = 3
-vframes = 2
-frame = 1
+[node name="AnimatedPlayerSprite" type="AnimatedSprite2D" parent="." unique_id=917035499]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_on558")
+animation = &"idle-up"
 
-[node name="Shotgun" parent="PlayerSprite" unique_id=183210898 instance=ExtResource("3_c6leb")]
-position = Vector2(32, 4)
+[node name="Shotgun" parent="AnimatedPlayerSprite" unique_id=183210898 instance=ExtResource("3_c6leb")]
+position = Vector2(32, -9)
 
-[node name="LaserSight" type="RayCast2D" parent="PlayerSprite" unique_id=1245117095]
-position = Vector2(56, 0)
+[node name="LaserSight" type="RayCast2D" parent="AnimatedPlayerSprite" unique_id=1245117095]
+position = Vector2(56, -13)
 target_position = Vector2(136, 0)
 script = ExtResource("7_dirf7")
 
-[node name="LaserLine" type="Line2D" parent="PlayerSprite/LaserSight" unique_id=1356495151]
+[node name="LaserLine" type="Line2D" parent="AnimatedPlayerSprite/LaserSight" unique_id=1356495151]
 modulate = Color(2, 0, 0, 1)
 points = PackedVector2Array(0, 0, 40, 0, 136, 0)
 width = 2.0
@@ -136,10 +172,6 @@ position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_idpv6")
 debug_color = Color(0.853756, 0.30439, 0.541965, 0.42)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2010790698]
-libraries/ = SubResource("AnimationLibrary_evndh")
-autoplay = &"idle"
-
 [node name="AttackSpeedTimer" type="Timer" parent="." unique_id=1257354772]
 wait_time = 0.5
 autostart = true
@@ -151,3 +183,4 @@ metadata/_custom_type_script = "uid://br78y8u5ukrq8"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1283019580]
 position = Vector2(0, -15)
+zoom = Vector2(2, 2)

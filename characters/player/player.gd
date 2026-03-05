@@ -1,17 +1,15 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var animation_player := $AnimationPlayer
-@onready var character_sprite := $PlayerSprite
-
-@onready var laser_sight := $PlayerSprite/LaserSight
+@onready var animated_sprite := $AnimatedPlayerSprite
+@onready var laser_sight := $AnimatedPlayerSprite/LaserSight
 @onready var attack_speed := $AttackSpeedTimer
 @onready var healthbar :Healthbar = $Healthbar
 
 
 @onready var hurtbox := $Hurtbox
 # External dependencies, weapons, equipment, etc
-@onready var shotgun := $PlayerSprite/Shotgun
+@onready var shotgun := $AnimatedPlayerSprite/Shotgun
 
 @export var status: PlayerStatus
 
@@ -22,13 +20,23 @@ extends CharacterBody2D
 const JUMP_VELOCITY = -400.0
 
 enum PlayerState {
-	IDLE,
-	WALK
+	IDLE_UP,
+	IDLE_DOWN,
+	IDLE_SIDE,
+	
+	WALK_SIDE,
+	WALK_DOWN,
+	WALK_UP,
 }
 
 var AnimationDictionary := {
-	PlayerState.IDLE: 'idle',
-	PlayerState.WALK: 'walk'
+	PlayerState.IDLE_UP: 'idle-up',
+	PlayerState.IDLE_DOWN: 'idle-down',
+	PlayerState.IDLE_SIDE: 'idle-side',
+	
+	PlayerState.WALK_SIDE: 'side-walk',
+	PlayerState.WALK_DOWN: 'down-walk',
+	PlayerState.WALK_UP: 'up-walk'
 }
 
 var current_state : PlayerState
@@ -54,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0:
 		velocity = Vector2.ZERO
 	
-	handle_gravity(delta)
 	handle_movement_input()
 
 	handle_animation(current_state)
@@ -71,11 +78,11 @@ func on_damage_taken(_area: Area2D) -> void:
 	# Damage blink animation
 	var damage_tween = create_tween().set_trans(Tween.TRANS_SINE)
 	# Flash red and fade out quickly
-	damage_tween.parallel().tween_property(character_sprite, "modulate", Color.RED, 0.1)
-	damage_tween.parallel().tween_property(character_sprite, "modulate:a", 0.5, 0.1)
+	damage_tween.parallel().tween_property(animated_sprite, "modulate", Color.RED, 0.1)
+	damage_tween.parallel().tween_property(animated_sprite, "modulate:a", 0.5, 0.1)
 	# Return to normal color and full opacity
-	damage_tween.tween_property(character_sprite, "modulate", Color.WHITE, 0.3)
-	damage_tween.tween_property(character_sprite, "modulate:a", 1.0, 0.3)
+	damage_tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.3)
+	damage_tween.tween_property(animated_sprite, "modulate:a", 1.0, 0.3)
 	
 	healthbar.update_current_health(-10)
 	
@@ -106,47 +113,52 @@ func attack() -> void:
 func set_state(new_state: PlayerState) -> void:
 	current_state = new_state
 
-func is_walking() -> void:
-	current_state = PlayerState.WALK
-
-func is_idle() -> void:
-	current_state = PlayerState.IDLE
-
 func flip_sprites() -> void:
 	pass
 	# moving forward
 	if velocity.x > 0:
-		character_sprite.flip_h = true
+		animated_sprite.flip_h = true
 		#damage_emitter.scale.x = 1
 	# moving back
 	elif velocity.x < 0:
-		character_sprite.flip_h = false
+		animated_sprite.flip_h = false
 		#damage_emitter.scale.x = -1
 
 # PHYSICS
 
-func handle_gravity(delta: float) -> void:
-	return
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
 func handle_movement_input() -> void:
-	$PlayerSprite.look_at(get_global_mouse_position())
+	animated_sprite.look_at(get_global_mouse_position())
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction:Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	
 	velocity = direction * status.speed
+	var last_non_zero_velocity = Vector2.RIGHT
 
-	flip_sprites()
+	if velocity.length() == 0:
 
-	if velocity.x == 0:
-		is_idle()
+		if last_non_zero_velocity.y < 0:
+			set_state(PlayerState.IDLE_DOWN)
+		elif last_non_zero_velocity.y > 0:
+			set_state(PlayerState.IDLE_UP)
+		else:
+			set_state(PlayerState.IDLE_SIDE)
+
+	else:
 		
+		if velocity.y < 0:
+			set_state(PlayerState.WALK_UP)
+		elif velocity.y >= 0:
+			set_state(PlayerState.WALK_DOWN)
+		elif velocity.x < 0:
+			animated_sprite.flip_h = true
+			set_state(PlayerState.WALK_SIDE)
+		elif velocity.x > 0:
+			set_state(PlayerState.WALK_SIDE)
+			animated_sprite.flip_h = false		
+
+	if velocity.length() > 0:
+		last_non_zero_velocity = velocity
 
 
 # Should I have an animation module?
@@ -154,8 +166,10 @@ func handle_movement_input() -> void:
 func handle_animation(state: PlayerState) -> void:
 	var animation_to_play = AnimationDictionary[state]
 
-	if animation_player.has_animation(animation_to_play):
-		animation_player.play(animation_to_play)
+	print("VELOCITY", velocity, ", ANIMATION ---> ", animation_to_play)
+
+	if animated_sprite.sprite_frames.has_animation(animation_to_play):
+		animated_sprite.play(animation_to_play)
 	else:
 		print('Unexpected animation key - ', animation_to_play)
 		return
