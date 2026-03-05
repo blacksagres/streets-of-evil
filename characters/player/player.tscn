@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://brny1n4ohpgfh" path="res://characters/hitbox.gd" id="2_3eadt"]
 [ext_resource type="Script" uid="uid://lyapngj3dity" path="res://characters/player/player_status.gd" id="2_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://c7uqq6xixufdi" path="res://components/weapons/shotgun/Shotgun.tscn" id="3_c6leb"]
-[ext_resource type="Texture2D" uid="uid://d0lxmhiq84fmo" path="res://assets/characters/streets-of-evil-character.png" id="4_rpf03"]
+[ext_resource type="Texture2D" uid="uid://dtnsj6biotqrx" path="res://assets/characters/streets-of-evil-character.png" id="4_rpf03"]
 [ext_resource type="Script" uid="uid://davfvldraeelq" path="res://characters/attack_speed_timer.gd" id="4_x0jl3"]
 [ext_resource type="Script" uid="uid://diglb6uh3awst" path="res://characters/player/laser_sight.gd" id="7_dirf7"]
 [ext_resource type="PackedScene" uid="uid://ddl14tax45g6q" path="res://components/healthbar.tscn" id="8_idpv6"]
