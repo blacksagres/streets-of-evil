@@ -133,15 +133,17 @@ position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_on558")
 animation = &"idle-up"
 
-[node name="Shotgun" parent="AnimatedPlayerSprite" unique_id=183210898 instance=ExtResource("3_c6leb")]
+[node name="WeaponAnchor" type="Marker2D" parent="AnimatedPlayerSprite" unique_id=2140283746]
+
+[node name="Shotgun" parent="AnimatedPlayerSprite/WeaponAnchor" unique_id=183210898 instance=ExtResource("3_c6leb")]
 position = Vector2(32, -9)
 
-[node name="LaserSight" type="RayCast2D" parent="AnimatedPlayerSprite" unique_id=1245117095]
+[node name="LaserSight" type="RayCast2D" parent="AnimatedPlayerSprite/WeaponAnchor" unique_id=1245117095]
 position = Vector2(56, -13)
 target_position = Vector2(136, 0)
 script = ExtResource("7_dirf7")
 
-[node name="LaserLine" type="Line2D" parent="AnimatedPlayerSprite/LaserSight" unique_id=1356495151]
+[node name="LaserLine" type="Line2D" parent="AnimatedPlayerSprite/WeaponAnchor/LaserSight" unique_id=1356495151]
 modulate = Color(2, 0, 0, 1)
 points = PackedVector2Array(0, 0, 40, 0, 136, 0)
 width = 2.0

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @onready var animated_sprite := $AnimatedPlayerSprite
+@onready var weapon_anchor := $AnimatedPlayerSprite/WeaponAnchor
 @onready var laser_sight := $AnimatedPlayerSprite/LaserSight
 @onready var attack_speed := $AttackSpeedTimer
 @onready var healthbar :Healthbar = $Healthbar
@@ -9,7 +10,7 @@ extends CharacterBody2D
 
 @onready var hurtbox := $Hurtbox
 # External dependencies, weapons, equipment, etc
-@onready var shotgun := $AnimatedPlayerSprite/Shotgun
+@onready var shotgun := $AnimatedPlayerSprite/WeaponAnchor/Shotgun
 
 @export var status: PlayerStatus
 
@@ -127,7 +128,7 @@ func flip_sprites() -> void:
 # PHYSICS
 
 func handle_movement_input() -> void:
-	animated_sprite.look_at(get_global_mouse_position())
+	weapon_anchor.look_at(get_global_mouse_position())
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction:Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
