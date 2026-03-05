@@ -22,7 +22,7 @@ func _ready() -> void:
 	# WORLD IS PAUSED BY DEFAULT!
 	get_tree().paused = true
 	
-	# zombie_timer.timeout.connect(on_mob_timeout_spawn)
+	zombie_timer.timeout.connect(on_mob_timeout_spawn)
 	player.status.gained_experience.connect(on_player_experience_gained)
 	# Enables the game to give options on what to increase
 	player.status.leveled_up.connect(on_player_level_up)
